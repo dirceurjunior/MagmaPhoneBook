@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.magmaagenda.modelo.contato;
+package com.magmaphonebook.model.phone;
 
 import java.util.List;
 import org.hibernate.Criteria;
@@ -14,7 +14,7 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author Dirceu Junior
  */
-public class ContatoDAOHibernate implements ContatoDAO {
+public class PhoneDAOHibernate implements PhoneDAO {
 
     private Session session;
 
@@ -23,30 +23,30 @@ public class ContatoDAOHibernate implements ContatoDAO {
     }
 
     @Override
-    public void salvar(Contato contato) {
+    public void salvar(Phone contato) {
         this.session.save(contato);
     }
 
     @Override
-    public void atualizar(Contato contato) {
+    public void atualizar(Phone contato) {
         this.session.update(contato);
     }
 
     @Override
-    public void excluir(Contato contato) {
+    public void excluir(Phone contato) {
         this.session.delete(contato);
     }
 
     @Override
-    public Contato porId(Integer id) {
-        Criteria criteria = this.session.createCriteria(Contato.class).add(Restrictions.eq("id", id));
-        Contato contato = (Contato) criteria.uniqueResult();
+    public Phone porId(Integer id) {
+        Criteria criteria = this.session.createCriteria(Phone.class).add(Restrictions.eq("id", id));
+        Phone contato = (Phone) criteria.uniqueResult();
         return contato;
     }
 
     @Override
-    public List<Contato> listarTodos() {
-        return this.session.createCriteria(Contato.class).list();
+    public List<Phone> listarTodos() {
+        return this.session.createCriteria(Phone.class).list();
     }
 
 }
