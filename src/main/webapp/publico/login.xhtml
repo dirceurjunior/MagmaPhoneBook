@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/template/layout.xhtml">
+            <ui:define name="content">
+                <h:panelGroup rendered="#{!empty param.login_error}">
+                    <div class="alert alert-danger" role="alert">
+                        #{SPRING_SECURITY_LAST_EXCEPTION.message}
+                    </div>
+                </h:panelGroup>
+                <form id="login" method="post" action="${request.contextPath}/j_spring_security_check">
+                    <div class="block">
+                        <input class="field" type='text' name='j_username' placeholder="Usuário" />
+                    </div>
+                    <div class="block">
+                        <input class="field" type='password' name='j_password' placeholder="Senha" />
+                    </div>
+                    <div class="block">
+                        <button class="field" type="submit">Acessar</button>
+                    </div>
+                    <script>
+                        document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}";
+                    </script>
+                </form>
+                <h:form>
+                    <div class="block">
+                        <h:commandLink class="block" action="usuario" value="Cadastre-se"/>
+                        <h:commandLink class="block" action="resetar" value="Esqueci minha senha"/>
+                    </div>  
+                </h:form> 
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

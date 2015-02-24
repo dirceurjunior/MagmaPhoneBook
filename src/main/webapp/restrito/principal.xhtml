@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+   <h:head>
+      <title>Facelet Title</title>
+   </h:head>
+   <h:body>
+      <ui:composition template="/template/layout.xhtml">
+         <ui:define name="content">
+            <h:form>
+               <h:outputText id="loginativo" value="#{request.userPrincipal.name}"/>
+               <h:outputText id="permissoes" value="#{request.parameterMap.values}"/>
+
+               <h:outputLink onclick="document.location = '#{request.contextPath}/j_spring_security_logout'" title="Sair">
+                  SAIR
+               </h:outputLink>
+               <h:commandLink class="btn btn-info btn-sm" action="/publico/login" value="Login"/>
+               <h:commandLink class="btn btn-info btn-sm" action="/publico/usuario" value="Cadastre-se"/>
+               <h:commandLink class="btn btn-warning btn-sm" action="/admin/mk" value="Config. Mikrotik"/>
+            </h:form>
+         </ui:define>
+      </ui:composition>
+
+   </h:body>
+</html>
+

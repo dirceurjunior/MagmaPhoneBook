@@ -1,0 +1,54 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20/02/2015, 21:55:46
+    Author     : DirceuRozolem
+*/
+
+body {
+/*    background-image: url("#{resource['img:background.jpg']}");*/
+}
+.block {
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-box;
+    justify-content: center;  
+    margin-bottom: 1em;
+}
+
+.field {
+    background: none;
+    border: 1px solid #666;
+    padding: 6px 12px;
+    border-radius: 3px;
+    font-size: 1.25em;
+    width: 16em;
+    color: #ffffff;
+}
+
+.field[type="text"],
+.field[type="password"] {
+/*    background-color: yellow;*/
+}
+
+.field[type="password"] {
+/*    background-color: blue;*/
+}
+
+.field[type="text"] {
+/*    background-color: green;*/
+}
+
+button.field {
+    /*    background-color: red;*/
+}
+
+
+
+
+
+
