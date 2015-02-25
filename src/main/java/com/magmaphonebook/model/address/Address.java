@@ -18,96 +18,96 @@ import javax.persistence.Id;
 @Entity
 public class Address implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private Integer id;
 
-    private String tipoEndereco;
+   private String typeAddress;
 
-    private String tipoLogradouro;
+   private String typeStreet;
 
-    private String logradouro;
+   private String street;
 
-    private String numero;
+   private String number;
 
-    private String bairro;
+   private String neighbourhood;
 
-    private String cep;
+   private String zipCode;
 
-    private Integer estado;
+   private Integer state;
 
-    private Integer municipio;
+   private Integer city;
 
-    public Integer getId() {
-        return id;
-    }
+   public Integer getId() {
+      return id;
+   }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+   public void setId(Integer id) {
+      this.id = id;
+   }
 
-    public String getTipoEndereco() {
-        return tipoEndereco;
-    }
+   public String getTypeAddress() {
+      return typeAddress;
+   }
 
-    public void setTipoEndereco(String tipoEndereco) {
-        this.tipoEndereco = tipoEndereco;
-    }
+   public void setTypeAddress(String typeAddress) {
+      this.typeAddress = typeAddress;
+   }
 
-    public String getTipoLogradouro() {
-        return tipoLogradouro;
-    }
+   public String getTypeStreet() {
+      return typeStreet;
+   }
 
-    public void setTipoLogradouro(String tipoLogradouro) {
-        this.tipoLogradouro = tipoLogradouro;
-    }
+   public void setTypeStreet(String typeStreet) {
+      this.typeStreet = typeStreet;
+   }
 
-    public String getLogradouro() {
-        return logradouro;
-    }
+   public String getStreet() {
+      return street;
+   }
 
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
-    }
+   public void setStreet(String street) {
+      this.street = street;
+   }
 
-    public String getNumero() {
-        return numero;
-    }
+   public String getNumber() {
+      return number;
+   }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
+   public void setNumber(String number) {
+      this.number = number;
+   }
 
-    public String getBairro() {
-        return bairro;
-    }
+   public String getNeighbourhood() {
+      return neighbourhood;
+   }
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
+   public void setNeighbourhood(String neighbourhood) {
+      this.neighbourhood = neighbourhood;
+   }
 
-    public Integer getEstado() {
-        return estado;
-    }
+   public String getZipCode() {
+      return zipCode;
+   }
 
-    public void setEstado(Integer estado) {
-        this.estado = estado;
-    }
+   public void setZipCode(String zipCode) {
+      this.zipCode = zipCode;
+   }
 
-    public Integer getMunicipio() {
-        return municipio;
-    }
+   public Integer getState() {
+      return state;
+   }
 
-    public void setMunicipio(Integer municipio) {
-        this.municipio = municipio;
-    }
+   public void setState(Integer state) {
+      this.state = state;
+   }
 
-    public String getCep() {
-        return cep;
-    }
+   public Integer getCity() {
+      return city;
+   }
 
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
+   public void setCity(Integer city) {
+      this.city = city;
+   }
 
 }

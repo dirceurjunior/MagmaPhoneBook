@@ -24,48 +24,32 @@ public class User implements Serializable {
    @GeneratedValue
    private Integer id;
 
-   private String nome;
+   private String name;
 
    private String cpf;
-
-   private String endereco;
-
-   private String nro;
-
-   private String bairro;
-
-   private Integer estado;
-
-   private Integer municipio;
-
-   private String foneFixo;
-
-   private String foneCelular;
-
-   private String email;
 
    @NaturalId
    private String login;
 
-   private String senha;
+   private String password;
 
    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-   private Date dataNascimento;
+   private Date dateBirth;
 
    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-   private Date dataCadastro;
+   private Date dateRegistration;
 
-   private boolean ativo;
+   private boolean active;
 
    @ElementCollection(targetClass = String.class)
    @JoinTable(
-           name = "usuario_permissao",
+           name = "user_permission",
            uniqueConstraints = {
-              @UniqueConstraint(columnNames = {"usuario", "permissao"})},
+              @UniqueConstraint(columnNames = {"user", "permission"})},
            joinColumns
-           = @JoinColumn(name = "usuario"))
-   @Column(name = "permissao", length = 50)
-   private Set<String> permissao = new HashSet<>();
+           = @JoinColumn(name = "user"))
+   @Column(name = "permission", length = 50)
+   private Set<String> permission = new HashSet<>();
 
    public Integer getId() {
       return id;
@@ -75,12 +59,12 @@ public class User implements Serializable {
       this.id = id;
    }
 
-   public String getNome() {
-      return nome;
+   public String getName() {
+      return name;
    }
 
-   public void setNome(String nome) {
-      this.nome = nome;
+   public void setName(String name) {
+      this.name = name;
    }
 
    public String getCpf() {
@@ -91,70 +75,6 @@ public class User implements Serializable {
       this.cpf = cpf;
    }
 
-   public String getEndereco() {
-      return endereco;
-   }
-
-   public void setEndereco(String endereco) {
-      this.endereco = endereco;
-   }
-
-   public String getNro() {
-      return nro;
-   }
-
-   public void setNro(String nro) {
-      this.nro = nro;
-   }
-
-   public String getBairro() {
-      return bairro;
-   }
-
-   public void setBairro(String bairro) {
-      this.bairro = bairro;
-   }
-
-   public Integer getEstado() {
-      return estado;
-   }
-
-   public void setEstado(Integer estado) {
-      this.estado = estado;
-   }
-
-   public Integer getMunicipio() {
-      return municipio;
-   }
-
-   public void setMunicipio(Integer municipio) {
-      this.municipio = municipio;
-   }
-
-   public String getFoneFixo() {
-      return foneFixo;
-   }
-
-   public void setFoneFixo(String foneFixo) {
-      this.foneFixo = foneFixo;
-   }
-
-   public String getFoneCelular() {
-      return foneCelular;
-   }
-
-   public void setFoneCelular(String foneCelular) {
-      this.foneCelular = foneCelular;
-   }
-
-   public String getEmail() {
-      return email;
-   }
-
-   public void setEmail(String email) {
-      this.email = email;
-   }
-
    public String getLogin() {
       return login;
    }
@@ -163,44 +83,44 @@ public class User implements Serializable {
       this.login = login;
    }
 
-   public String getSenha() {
-      return senha;
+   public String getPassword() {
+      return password;
    }
 
-   public void setSenha(String senha) {
-      this.senha = senha;
+   public void setPassword(String password) {
+      this.password = password;
    }
 
-   public Date getDataNascimento() {
-      return dataNascimento;
+   public Date getDateBirth() {
+      return dateBirth;
    }
 
-   public void setDataNascimento(Date dataNascimento) {
-      this.dataNascimento = dataNascimento;
+   public void setDateBirth(Date dateBirth) {
+      this.dateBirth = dateBirth;
    }
 
-   public Date getDataCadastro() {
-      return dataCadastro;
+   public Date getDateRegistration() {
+      return dateRegistration;
    }
 
-   public void setDataCadastro(Date dataCadastro) {
-      this.dataCadastro = dataCadastro;
+   public void setDateRegistration(Date dateRegistration) {
+      this.dateRegistration = dateRegistration;
    }
 
-   public boolean isAtivo() {
-      return ativo;
+   public boolean isActive() {
+      return active;
    }
 
-   public void setAtivo(boolean ativo) {
-      this.ativo = ativo;
+   public void setActive(boolean active) {
+      this.active = active;
    }
 
-   public Set<String> getPermissao() {
-      return permissao;
+   public Set<String> getPermission() {
+      return permission;
    }
 
-   public void setPermissao(Set<String> permissao) {
-      this.permissao = permissao;
+   public void setPermission(Set<String> permission) {
+      this.permission = permission;
    }
 
 }

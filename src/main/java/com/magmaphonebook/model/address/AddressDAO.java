@@ -13,19 +13,19 @@ import java.util.List;
  */
 public interface AddressDAO {
 
-    public void salvar(Address endereco);
+    public void save(Address address);
 
-    public void atualizar(Address endereco);
+    public void update(Address address);
 
-    public void excluir(Address endereco);
+    public void delete(Address address);
 
-    public Address porId(Integer id);
+    public Address findById(Integer id);
 
-    public Address porNome(String nome);
+    public Address findByName(String name);
 
-    public List<Address> listarTodos();
+    public List<Address> listAll();
 
-    public List<Address> listarPorNome(String nome);
+    public List<Address> listByName(String name);
 
     public Integer retornaUltimoCodigo();
 

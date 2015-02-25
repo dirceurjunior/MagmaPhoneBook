@@ -12,11 +12,11 @@ public class UserRN {
    }
 
    public User carregar(Integer id) {
-      return this.userDAO.carregar(id);
+      return this.userDAO.load(id);
    }
 
    public User buscarPorLogin(String login) {
-      return this.userDAO.buscarPorLogin(login);
+      return this.userDAO.findByLogin(login);
    }
 
    public void salvar(User user) {
@@ -25,60 +25,19 @@ public class UserRN {
       if (id == null || id == 0) {
 
          //user.getPermissao().add("ROLE_USUARIO");
-         this.userDAO.salvar(user);
+         this.userDAO.save(user);
 
       } else {
-         this.userDAO.atualizar(user);
+         this.userDAO.update(user);
       }
    }
 
    public void excluir(User user) {
-      this.userDAO.excluir(user);
+      this.userDAO.delete(user);
    }
 
    public List<User> listar() {
-      return this.userDAO.listar();
-   }
-//	public void enviarEmailPosCadastramento(User user) throws RNException {
-//		//Enviando um e-mail conforme o idioma do usu�rio
-//		String[] info = user.getIdioma().split("_");
-//		Locale locale = new Locale(info[0], info[1]);
-//			
-//		String titulo = MensagemUtil.getMensagem(locale, "email_titulo");
-//		String mensagem = MensagemUtil.getMensagem(locale, "email_mensagem", user.getNome(), user.getLogin(), user.getSenha());
-//		try {		
-//			EmailUtil emailUtil = new EmailUtil();
-//			emailUtil.enviarEmail(null, user.getEmail(), titulo, mensagem);
-//		} catch (UtilException e) {
-//			throw new RNException(e);
-//		}
-//	}
-
-   public User porCPF(String cpf) {
-      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      return this.userDAO.list();
    }
 
-   public User porNome(String string) {
-      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   }
-
-   public List<User> listarTodos() {
-      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   }
-
-   public List<User> listarPorNome(String nome) {
-      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   }
-
-   public void atualizar(User user) {
-      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   }
-
-   public User porId(Integer id) {
-      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   }
-
-   public List<User> porNomeSimples(String nome) {
-      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-   }
 }

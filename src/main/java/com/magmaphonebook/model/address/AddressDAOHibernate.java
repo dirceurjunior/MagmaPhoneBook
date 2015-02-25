@@ -18,54 +18,54 @@ import org.hibernate.criterion.Restrictions;
  */
 public class AddressDAOHibernate implements AddressDAO {
 
-    private Session session;
+   private Session session;
 
-    public void setSession(Session session) {
-        this.session = session;
-    }
+   public void setSession(Session session) {
+      this.session = session;
+   }
 
-    @Override
-    public void salvar(Address endereco) {
-        this.session.save(endereco);
-    }
+   @Override
+   public void save(Address endereco) {
+      this.session.save(endereco);
+   }
 
-    @Override
-    public void atualizar(Address endereco) {
-        this.session.update(endereco);
-    }
+   @Override
+   public void update(Address endereco) {
+      this.session.update(endereco);
+   }
 
-    @Override
-    public void excluir(Address endereco) {
-        this.session.delete(endereco);
-    }
+   @Override
+   public void delete(Address endereco) {
+      this.session.delete(endereco);
+   }
 
-    @Override
-    public Address porId(Integer id) {
-        Criteria criteria = this.session.createCriteria(Address.class).add(Restrictions.eq("id", id));
-        Address endereco = (Address) criteria.uniqueResult();
-        return endereco;
-    }
+   @Override
+   public Address findById(Integer id) {
+      Criteria criteria = this.session.createCriteria(Address.class).add(Restrictions.eq("id", id));
+      Address endereco = (Address) criteria.uniqueResult();
+      return endereco;
+   }
 
-    @Override
-    public Address porNome(String nome) {
-        Criteria criteria = this.session.createCriteria(Address.class).add(Restrictions.eq("logradouro", nome));
-        Address endereco = (Address) criteria.uniqueResult();
-        return endereco;
-    }
+   @Override
+   public Address findByName(String name) {
+      Criteria criteria = this.session.createCriteria(Address.class).add(Restrictions.eq("street", name));
+      Address endereco = (Address) criteria.uniqueResult();
+      return endereco;
+   }
 
-    @Override
-    public List<Address> listarTodos() {
-        return this.session.createCriteria(Address.class).addOrder(Order.asc("logradouro")).list();
-    }
+   @Override
+   public List<Address> listAll() {
+      return this.session.createCriteria(Address.class).addOrder(Order.asc("street")).list();
+   }
 
-    @Override
-    public List<Address> listarPorNome(String nome) {
-        return this.session.createCriteria(Address.class).add(Restrictions.like("logradouro", nome, MatchMode.ANYWHERE)).addOrder(Order.asc("logradouro")).list();
-    }
+   @Override
+   public List<Address> listByName(String name) {
+      return this.session.createCriteria(Address.class).add(Restrictions.like("street", name, MatchMode.ANYWHERE)).addOrder(Order.asc("street")).list();
+   }
 
-    @Override
-    public Integer retornaUltimoCodigo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   @Override
+   public Integer retornaUltimoCodigo() {
+      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   }
 
 }

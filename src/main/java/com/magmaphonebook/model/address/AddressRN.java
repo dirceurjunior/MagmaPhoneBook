@@ -21,35 +21,35 @@ public class AddressRN {
    }
 
    public void salvar(Address address) {
-      this.addressDAO.salvar(address);
+      this.addressDAO.save(address);
    }
 
    public void atualizar(Address address) {
-      this.addressDAO.atualizar(address);
+      this.addressDAO.update(address);
    }
 
    public void excluir(Address address) {
-      this.addressDAO.excluir(address);
+      this.addressDAO.delete(address);
    }
 
    public List<Address> listarTodos() {
-      return this.addressDAO.listarTodos();
+      return this.addressDAO.listAll();
    }
 
-   public List<Address> listarPorNome(String nome) {
-      return this.addressDAO.listarPorNome(nome);
+   public List<Address> listarPorNome(String name) {
+      return this.addressDAO.listByName(name);
    }
 
    public int buscaUltimoRegistro() {
       return this.addressDAO.retornaUltimoCodigo();
    }
 
-   public Address porId(int id) {
-      return this.addressDAO.porId(id);
+   public Address findById(int id) {
+      return this.addressDAO.findById(id);
    }
 
-   public Address porNome(String nome) {
-      return this.addressDAO.porNome(nome);
+   public Address findByName(String name) {
+      return this.addressDAO.findByName(name);
    }
 
 }

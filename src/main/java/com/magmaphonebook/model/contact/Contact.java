@@ -89,7 +89,7 @@ public class Contact implements Serializable {
            name = "contact_phone",
            joinColumns = @JoinColumn(name = "paciente_id"),
            inverseJoinColumns = @JoinColumn(name = "contato_id"))
-   private List<Contact> contatos;
+   private List<Contact> phones;
 
    //////////////////////////////////////// MAPEAMENTO COM EMAILS
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -97,5 +97,167 @@ public class Contact implements Serializable {
            joinColumns = @JoinColumn(name = "paciente_id"),
            inverseJoinColumns = @JoinColumn(name = "email_id"))
    private List<Email> emails;
+
+   public Integer getId() {
+      return id;
+   }
+
+   public void setId(Integer id) {
+      this.id = id;
+   }
+
+   public String getNome() {
+      return nome;
+   }
+
+   public void setNome(String nome) {
+      this.nome = nome;
+   }
+
+   public String getCpf() {
+      return cpf;
+   }
+
+   public void setCpf(String cpf) {
+      this.cpf = cpf;
+   }
+
+   public Date getDataNascimento() {
+      return dataNascimento;
+   }
+
+   public void setDataNascimento(Date dataNascimento) {
+      this.dataNascimento = dataNascimento;
+   }
+
+   public Date getDataCadastro() {
+      return dataCadastro;
+   }
+
+   public void setDataCadastro(Date dataCadastro) {
+      this.dataCadastro = dataCadastro;
+   }
+
+   public String getSexo() {
+      return sexo;
+   }
+
+   public void setSexo(String sexo) {
+      this.sexo = sexo;
+   }
+
+   public String getEstadoCivil() {
+      return estadoCivil;
+   }
+
+   public void setEstadoCivil(String estadoCivil) {
+      this.estadoCivil = estadoCivil;
+   }
+
+   public String getEtnia() {
+      return etnia;
+   }
+
+   public void setEtnia(String etnia) {
+      this.etnia = etnia;
+   }
+
+   public String getProfissao() {
+      return profissao;
+   }
+
+   public void setProfissao(String profissao) {
+      this.profissao = profissao;
+   }
+
+   public String getProntuario() {
+      return prontuario;
+   }
+
+   public void setProntuario(String prontuario) {
+      this.prontuario = prontuario;
+   }
+
+   public String getMatricula() {
+      return matricula;
+   }
+
+   public void setMatricula(String matricula) {
+      this.matricula = matricula;
+   }
+
+   public String getReligiao() {
+      return religiao;
+   }
+
+   public void setReligiao(String religiao) {
+      this.religiao = religiao;
+   }
+
+   public String getIndicacao() {
+      return indicacao;
+   }
+
+   public void setIndicacao(String indicacao) {
+      this.indicacao = indicacao;
+   }
+
+   public String getNacionalidade() {
+      return nacionalidade;
+   }
+
+   public void setNacionalidade(String nacionalidade) {
+      this.nacionalidade = nacionalidade;
+   }
+
+   public String getNaturalidade() {
+      return naturalidade;
+   }
+
+   public void setNaturalidade(String naturalidade) {
+      this.naturalidade = naturalidade;
+   }
+
+   public String getObservacoes() {
+      return observacoes;
+   }
+
+   public void setObservacoes(String observacoes) {
+      this.observacoes = observacoes;
+   }
+
+   public Integer getAtivo() {
+      return ativo;
+   }
+
+   public void setAtivo(Integer ativo) {
+      this.ativo = ativo;
+   }
+
+   public List<Address> getAddress() {
+      return address;
+   }
+
+   public void setAddress(List<Address> address) {
+      this.address = address;
+   }
+
+   public List<Contact> getPhones() {
+      return phones;
+   }
+
+   public void setPhones(List<Contact> phones) {
+      this.phones = phones;
+   }
+
+   public List<Email> getEmails() {
+      return emails;
+   }
+
+   public void setEmails(List<Email> emails) {
+      this.emails = emails;
+   }
+   
+   
 
 }

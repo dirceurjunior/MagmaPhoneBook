@@ -4,17 +4,17 @@ import java.util.List;
 
 public interface UserDAO {
 
-    public void salvar(User usuario);
+   public void save(User user);
 
-    public void atualizar(User usuario);
+   public void update(User user);
 
-    public void excluir(User usuario);
+   public void delete(User user);
 
-    public User carregar(Integer codigo);
+   public User load(Integer id);
 
-    public User buscarPorLogin(String login);
-    
-    public User buscarPorEmail(String email);
+   public User findByLogin(String login);
 
-    public List<User> listar();
+   public User findByEmail(String email);
+
+   public List<User> list();
 }
