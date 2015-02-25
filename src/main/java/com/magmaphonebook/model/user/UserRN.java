@@ -5,50 +5,50 @@ import java.util.List;
 
 public class UserRN {
 
-   private UserDAO usuarioDAO;
+   private UserDAO userDAO;
 
    public UserRN() {
-      this.usuarioDAO = DAOFactory.criarUsuarioDAO();
+      this.userDAO = DAOFactory.createUserDAO();
    }
 
    public User carregar(Integer id) {
-      return this.usuarioDAO.carregar(id);
+      return this.userDAO.carregar(id);
    }
 
    public User buscarPorLogin(String login) {
-      return this.usuarioDAO.buscarPorLogin(login);
+      return this.userDAO.buscarPorLogin(login);
    }
 
-   public void salvar(User usuario) {
+   public void salvar(User user) {
 
-      Integer id = usuario.getId();
+      Integer id = user.getId();
       if (id == null || id == 0) {
 
-         //usuario.getPermissao().add("ROLE_USUARIO");
-         this.usuarioDAO.salvar(usuario);
+         //user.getPermissao().add("ROLE_USUARIO");
+         this.userDAO.salvar(user);
 
       } else {
-         this.usuarioDAO.atualizar(usuario);
+         this.userDAO.atualizar(user);
       }
    }
 
-   public void excluir(User usuario) {
-      this.usuarioDAO.excluir(usuario);
+   public void excluir(User user) {
+      this.userDAO.excluir(user);
    }
 
    public List<User> listar() {
-      return this.usuarioDAO.listar();
+      return this.userDAO.listar();
    }
-//	public void enviarEmailPosCadastramento(User usuario) throws RNException {
+//	public void enviarEmailPosCadastramento(User user) throws RNException {
 //		//Enviando um e-mail conforme o idioma do usu�rio
-//		String[] info = usuario.getIdioma().split("_");
+//		String[] info = user.getIdioma().split("_");
 //		Locale locale = new Locale(info[0], info[1]);
 //			
 //		String titulo = MensagemUtil.getMensagem(locale, "email_titulo");
-//		String mensagem = MensagemUtil.getMensagem(locale, "email_mensagem", usuario.getNome(), usuario.getLogin(), usuario.getSenha());
+//		String mensagem = MensagemUtil.getMensagem(locale, "email_mensagem", user.getNome(), user.getLogin(), user.getSenha());
 //		try {		
 //			EmailUtil emailUtil = new EmailUtil();
-//			emailUtil.enviarEmail(null, usuario.getEmail(), titulo, mensagem);
+//			emailUtil.enviarEmail(null, user.getEmail(), titulo, mensagem);
 //		} catch (UtilException e) {
 //			throw new RNException(e);
 //		}
@@ -70,7 +70,7 @@ public class UserRN {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 
-   public void atualizar(User usuario) {
+   public void atualizar(User user) {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 

@@ -5,7 +5,7 @@
  */
 package com.magmaphonebook.model.email;
 
-import br.com.magmadoctor.util.DAOFactory;
+import com.magmaphonebook.util.DAOFactory;
 import java.util.List;
 
 /**
@@ -14,38 +14,38 @@ import java.util.List;
  */
 public class EmailRN {
 
-    private final EmailDAO emailDAO;
+   private final EmailDAO emailDAO;
 
-    public EmailRN() {
-        this.emailDAO = DAOFactory.criarEmailDAO();
-    }
+   public EmailRN() {
+      this.emailDAO = DAOFactory.createEmailDAO();
+   }
 
-    public void salvar(Email email) {
-        this.emailDAO.salvar(email);
-    }
+   public void salvar(Email email) {
+      this.emailDAO.salvar(email);
+   }
 
-    public void atualizar(Email email) {
-        this.emailDAO.atualizar(email);
-    }
+   public void atualizar(Email email) {
+      this.emailDAO.atualizar(email);
+   }
 
-    public void excluir(Email email) {
-        this.emailDAO.excluir(email);
-    }
+   public void excluir(Email email) {
+      this.emailDAO.excluir(email);
+   }
 
-    public List<Email> listarTodos() {
-        return this.emailDAO.listarTodos();
-    }
+   public List<Email> listarTodos() {
+      return this.emailDAO.listarTodos();
+   }
 
-    public List<Email> listarPorNome(String nome) {
-        return this.emailDAO.listarPorNome(nome);
-    }
+   public List<Email> listarPorNome(String nome) {
+      return this.emailDAO.listarPorNome(nome);
+   }
 
-    public Email porId(int id) {
-        return this.emailDAO.porId(id);
-    }
+   public Email porId(int id) {
+      return this.emailDAO.porId(id);
+   }
 
-    public Email porNome(String nome) {
-        return this.emailDAO.porNome(nome);
-    }
+   public Email porNome(String nome) {
+      return this.emailDAO.porNome(nome);
+   }
 
 }

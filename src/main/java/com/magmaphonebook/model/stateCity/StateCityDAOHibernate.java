@@ -14,7 +14,7 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author Dirceu Junior
  */
-public class EstadoMunicipioDAOHibernate implements EstadoMunicipioDAO {
+public class StateCityDAOHibernate implements StateCityDAO {
 
     private Session session;
 
@@ -23,20 +23,20 @@ public class EstadoMunicipioDAOHibernate implements EstadoMunicipioDAO {
     }
 
     @Override
-    public List<Estado> listarEstados() {
-        Criteria l = this.session.createCriteria(Estado.class).addOrder(Order.asc("nome"));
-        List<Estado> lista = l.list();
+    public List<State> listarEstados() {
+        Criteria l = this.session.createCriteria(State.class).addOrder(Order.asc("nome"));
+        List<State> lista = l.list();
         return lista;
     }
 
     @Override
-    public List<Municipio> listarMunicipios() {
-        return this.session.createCriteria(Municipio.class).addOrder(Order.asc("nome")).list();
+    public List<City> listarMunicipios() {
+        return this.session.createCriteria(City.class).addOrder(Order.asc("nome")).list();
     }
 
     @Override
-    public List<Municipio> buscarPorUF(Integer id) {
-        Criteria criteria = this.session.createCriteria(Municipio.class);
+    public List<City> buscarPorUF(Integer id) {
+        Criteria criteria = this.session.createCriteria(City.class);
         criteria.add(Restrictions.eq("estado_id", String.valueOf(id)));
         return criteria.list();
     }

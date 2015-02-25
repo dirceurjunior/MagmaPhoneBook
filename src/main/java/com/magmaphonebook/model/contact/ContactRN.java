@@ -4,7 +4,7 @@
  */
 package com.magmaphonebook.model.contact;
 
-import br.com.magmadoctor.util.DAOFactory;
+import com.magmaphonebook.util.DAOFactory;
 import java.util.List;
 
 /**
@@ -13,49 +13,49 @@ import java.util.List;
  */
 public class ContactRN {
 
-   private final ContactDAO pacienteDAO;
+   private final ContactDAO contactDAO;
 
    public ContactRN() {
-      this.pacienteDAO = DAOFactory.criarPacienteDAO();
+      this.contactDAO = DAOFactory.createContactDAO();
    }
 
    public void salvar(Contact cliente) {
-      this.pacienteDAO.salvar(cliente);
+      this.contactDAO.salvar(cliente);
    }
 
    public void atualizar(Contact cliente) {
-      this.pacienteDAO.atualizar(cliente);
+      this.contactDAO.atualizar(cliente);
    }
 
    public void excluir(Contact cliente) {
-      this.pacienteDAO.excluir(cliente);
+      this.contactDAO.excluir(cliente);
    }
 
    public List<Contact> listarTodos() {
-      return this.pacienteDAO.listarTodos();
+      return this.contactDAO.listarTodos();
    }
 
    public List<Contact> listarPorNome(String nome) {
-      return this.pacienteDAO.listarPorNome(nome);
+      return this.contactDAO.listarPorNome(nome);
    }
 
    public int buscaUltimoRegistro() {
-      return this.pacienteDAO.retornaUltimoId();
+      return this.contactDAO.retornaUltimoId();
    }
 
    public Contact porId(int id) {
-      return this.pacienteDAO.porId(id);
+      return this.contactDAO.porId(id);
    }
 
    public Contact porNome(String nome) {
-      return this.pacienteDAO.porNome(nome);
+      return this.contactDAO.porNome(nome);
    }
 
    public Contact porCPF(String cpf) {
-      return this.pacienteDAO.porCPF(cpf);
+      return this.contactDAO.porCPF(cpf);
    }
 
    public List<Contact> porNomeSimples(String nome) {
-      return this.pacienteDAO.porNomeSimples(nome);
+      return this.contactDAO.porNomeSimples(nome);
    }
 }

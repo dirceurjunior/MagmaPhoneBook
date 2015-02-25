@@ -5,22 +5,21 @@
 package com.magmaphonebook.model.stateCity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import org.hibernate.annotations.NaturalId;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  *
  * @author Dirceu Junior
  */
 @Entity
-public class Estado implements Serializable {
+public class City implements Serializable {
 
     @Id
     private Integer id;
-    @NaturalId
     private String nome;
-    private String sigla;
     private Integer ibge;
+    private String estado_id;
 
     public Integer getId() {
         return id;
@@ -38,20 +37,20 @@ public class Estado implements Serializable {
         this.nome = nome;
     }
 
-    public String getSigla() {
-        return sigla;
-    }
-
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
     public Integer getIbge() {
         return ibge;
     }
 
     public void setIbge(Integer ibge) {
         this.ibge = ibge;
+    }
+
+    public String getEstado_id() {
+        return estado_id;
+    }
+
+    public void setEstado_id(String estado_id) {
+        this.estado_id = estado_id;
     }
 
 }

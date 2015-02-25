@@ -14,30 +14,30 @@ import java.util.List;
  */
 public class PhoneRN {
 
-   private final PhoneDAO contatoDAO;
+   private final PhoneDAO phoneDAO;
 
    public PhoneRN() {
-      this.contatoDAO = DAOFactory.criarContatoDAO();
+      this.phoneDAO = DAOFactory.createPhoneDAO();
    }
 
-   public void salvar(Phone contato) {
-      this.contatoDAO.salvar(contato);
+   public void salvar(Phone phone) {
+      this.phoneDAO.salvar(phone);
    }
 
-   public void atualizar(Phone contato) {
-      this.contatoDAO.atualizar(contato);
+   public void atualizar(Phone phone) {
+      this.phoneDAO.atualizar(phone);
    }
 
-   public void excluir(Phone contato) {
-      this.contatoDAO.excluir(contato);
+   public void excluir(Phone phone) {
+      this.phoneDAO.excluir(phone);
    }
 
    public List<Phone> listarTodos() {
-      return this.contatoDAO.listarTodos();
+      return this.phoneDAO.listarTodos();
    }
 
    public Phone porId(int id) {
-      return this.contatoDAO.porId(id);
+      return this.phoneDAO.porId(id);
    }
 
 }

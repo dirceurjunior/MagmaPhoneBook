@@ -10,12 +10,12 @@ import java.util.List;
  *
  * @author Dirceu Junior
  */
-public interface EstadoMunicipioDAO {
+public interface StateCityDAO {
 
-    public List<Municipio> listarMunicipios();
+    public List<City> listarMunicipios();
 
-    public List<Estado> listarEstados();
+    public List<State> listarEstados();
 
-    public List<Municipio> buscarPorUF(Integer id);
+    public List<City> buscarPorUF(Integer id);
 
 }

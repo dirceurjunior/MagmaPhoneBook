@@ -5,7 +5,7 @@
  */
 package com.magmaphonebook.model.address;
 
-import br.com.magmadoctor.util.DAOFactory;
+import com.magmaphonebook.util.DAOFactory;
 import java.util.List;
 
 /**
@@ -14,42 +14,42 @@ import java.util.List;
  */
 public class AddressRN {
 
-    private final AddressDAO enderecoDAO;
+   private final AddressDAO addressDAO;
 
-    public AddressRN() {
-        this.enderecoDAO = DAOFactory.criarEnderecoDAO();
-    }
+   public AddressRN() {
+      this.addressDAO = DAOFactory.createAddressDAO();
+   }
 
-    public void salvar(Address endereco) {
-        this.enderecoDAO.salvar(endereco);
-    }
+   public void salvar(Address address) {
+      this.addressDAO.salvar(address);
+   }
 
-    public void atualizar(Address endereco) {
-        this.enderecoDAO.atualizar(endereco);
-    }
+   public void atualizar(Address address) {
+      this.addressDAO.atualizar(address);
+   }
 
-    public void excluir(Address endereco) {
-        this.enderecoDAO.excluir(endereco);
-    }
+   public void excluir(Address address) {
+      this.addressDAO.excluir(address);
+   }
 
-    public List<Address> listarTodos() {
-        return this.enderecoDAO.listarTodos();
-    }
+   public List<Address> listarTodos() {
+      return this.addressDAO.listarTodos();
+   }
 
-    public List<Address> listarPorNome(String nome) {
-        return this.enderecoDAO.listarPorNome(nome);
-    }
+   public List<Address> listarPorNome(String nome) {
+      return this.addressDAO.listarPorNome(nome);
+   }
 
-    public int buscaUltimoRegistro() {
-        return this.enderecoDAO.retornaUltimoCodigo();
-    }
+   public int buscaUltimoRegistro() {
+      return this.addressDAO.retornaUltimoCodigo();
+   }
 
-    public Address porId(int id) {
-        return this.enderecoDAO.porId(id);
-    }
+   public Address porId(int id) {
+      return this.addressDAO.porId(id);
+   }
 
-    public Address porNome(String nome) {
-        return this.enderecoDAO.porNome(nome);
-    }
+   public Address porNome(String nome) {
+      return this.addressDAO.porNome(nome);
+   }
 
 }
