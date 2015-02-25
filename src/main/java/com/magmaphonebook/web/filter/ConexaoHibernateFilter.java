@@ -1,4 +1,4 @@
-package br.com.magmaagenda.web.filter;
+package com.magmaphonebook.web.filter;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import org.hibernate.SessionFactory;
-import br.com.magmaagenda.util.HibernateUtil;
+import com.magmaphonebook.util.HibernateUtil;
 
 public class ConexaoHibernateFilter implements Filter {
 

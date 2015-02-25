@@ -19,7 +19,7 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author Dirceu Junior
  */
-public class PessoaDAOHibernate implements PessoaDAO {
+public class ContactDAOHibernate implements ContactDAO {
 
     private Session session;
 
@@ -28,28 +28,28 @@ public class PessoaDAOHibernate implements PessoaDAO {
     }
 
     @Override
-    public void salvar(Pessoa cliente) {
+    public void salvar(Contact cliente) {
         this.session.save(cliente);
     }
 
     @Override
-    public void atualizar(Pessoa cliente) {
+    public void atualizar(Contact cliente) {
         this.session.update(cliente);
     }
 
     @Override
-    public void excluir(Pessoa cliente) {
+    public void excluir(Contact cliente) {
         session.delete(cliente);
     }
 
     @Override
-    public List<Pessoa> listarTodos() {
-        return this.session.createCriteria(Pessoa.class).addOrder(Order.asc("nome")).list();
+    public List<Contact> listarTodos() {
+        return this.session.createCriteria(Contact.class).addOrder(Order.asc("nome")).list();
     }
 
     @Override
-    public List<Pessoa> listarPorNome(String nome) {
-        Criteria criteria = this.session.createCriteria(Pessoa.class)
+    public List<Contact> listarPorNome(String nome) {
+        Criteria criteria = this.session.createCriteria(Contact.class)
                 .add(Restrictions.like("nome", nome, MatchMode.ANYWHERE))
                 .addOrder(Order.asc("nome"));
         //criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
@@ -59,7 +59,7 @@ public class PessoaDAOHibernate implements PessoaDAO {
     @Override
     public Integer retornaUltimoId() {
         int ultimo = 0;
-        Criteria criteria = this.session.createCriteria(Pessoa.class).setProjection(Projections.max("id"));
+        Criteria criteria = this.session.createCriteria(Contact.class).setProjection(Projections.max("id"));
         if (criteria.uniqueResult() == null) {
             return ultimo;
         } else {
@@ -69,28 +69,28 @@ public class PessoaDAOHibernate implements PessoaDAO {
     }
 
     @Override
-    public Pessoa porId(Integer id) {
-        Criteria criteria = this.session.createCriteria(Pessoa.class).add(Restrictions.eq("id", id));
-        Pessoa paciente = (Pessoa) criteria.uniqueResult();
+    public Contact porId(Integer id) {
+        Criteria criteria = this.session.createCriteria(Contact.class).add(Restrictions.eq("id", id));
+        Contact paciente = (Contact) criteria.uniqueResult();
         return paciente;
     }
 
     @Override
-    public Pessoa porNome(String nome) {
-        Criteria criteria = this.session.createCriteria(Pessoa.class).add(Restrictions.eq("nome", nome));
-        Pessoa paciente = (Pessoa) criteria.uniqueResult();
+    public Contact porNome(String nome) {
+        Criteria criteria = this.session.createCriteria(Contact.class).add(Restrictions.eq("nome", nome));
+        Contact paciente = (Contact) criteria.uniqueResult();
         return paciente;
     }
 
     @Override
-    public Pessoa porCPF(String cpf) {
-        Criteria criteria = this.session.createCriteria(Pessoa.class).add(Restrictions.eq("cpf", cpf));
-        Pessoa paciente = (Pessoa) criteria.uniqueResult();
+    public Contact porCPF(String cpf) {
+        Criteria criteria = this.session.createCriteria(Contact.class).add(Restrictions.eq("cpf", cpf));
+        Contact paciente = (Contact) criteria.uniqueResult();
         return paciente;
     }
 
     @Override
-    public List<Pessoa> porNomeSimples(String nome) {
+    public List<Contact> porNomeSimples(String nome) {
 
 //      Criteria lista = session.createCriteria(Paciente.class, "p")
 //              .setProjection(Projections.projectionList()
@@ -98,7 +98,7 @@ public class PessoaDAOHibernate implements PessoaDAO {
 //                      .add(Projections.property("p.nome").as("nome")))
 //              .add(Restrictions.like("nome", nome, MatchMode.ANYWHERE));
 //      return lista.list();
-        Criteria criteria = this.session.createCriteria(Pessoa.class);
+        Criteria criteria = this.session.createCriteria(Contact.class);
         ProjectionList p1 = Projections.projectionList();
         p1.add(Projections.property("id"));
         p1.add(Projections.property("nome"));
@@ -109,8 +109,8 @@ public class PessoaDAOHibernate implements PessoaDAO {
 
         List results = criteria.list();
 
-        Pessoa p = null;
-        List<Pessoa> result_list = null;
+        Contact p = null;
+        List<Contact> result_list = null;
         List<String> result_lista = null;
         for (Object objects : results) {
             Object[] o = (Object[]) objects;

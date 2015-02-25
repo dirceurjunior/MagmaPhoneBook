@@ -11,31 +11,31 @@ import java.util.List;
  *
  * @author Dirceu Junior
  */
-public class PacienteRN {
+public class ContactRN {
 
-   private final PessoaDAO pacienteDAO;
+   private final ContactDAO pacienteDAO;
 
-   public PacienteRN() {
+   public ContactRN() {
       this.pacienteDAO = DAOFactory.criarPacienteDAO();
    }
 
-   public void salvar(Pessoa cliente) {
+   public void salvar(Contact cliente) {
       this.pacienteDAO.salvar(cliente);
    }
 
-   public void atualizar(Pessoa cliente) {
+   public void atualizar(Contact cliente) {
       this.pacienteDAO.atualizar(cliente);
    }
 
-   public void excluir(Pessoa cliente) {
+   public void excluir(Contact cliente) {
       this.pacienteDAO.excluir(cliente);
    }
 
-   public List<Pessoa> listarTodos() {
+   public List<Contact> listarTodos() {
       return this.pacienteDAO.listarTodos();
    }
 
-   public List<Pessoa> listarPorNome(String nome) {
+   public List<Contact> listarPorNome(String nome) {
       return this.pacienteDAO.listarPorNome(nome);
    }
 
@@ -43,19 +43,19 @@ public class PacienteRN {
       return this.pacienteDAO.retornaUltimoId();
    }
 
-   public Pessoa porId(int id) {
+   public Contact porId(int id) {
       return this.pacienteDAO.porId(id);
    }
 
-   public Pessoa porNome(String nome) {
+   public Contact porNome(String nome) {
       return this.pacienteDAO.porNome(nome);
    }
 
-   public Pessoa porCPF(String cpf) {
+   public Contact porCPF(String cpf) {
       return this.pacienteDAO.porCPF(cpf);
    }
 
-   public List<Pessoa> porNomeSimples(String nome) {
+   public List<Contact> porNomeSimples(String nome) {
       return this.pacienteDAO.porNomeSimples(nome);
    }
 }

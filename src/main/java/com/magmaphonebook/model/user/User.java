@@ -1,4 +1,4 @@
-package br.com.magmaagenda.modelo.usuario;
+package com.magmaphonebook.model.user;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,7 +16,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
-public class Usuario implements Serializable {
+public class User implements Serializable {
 
    private static final long serialVersionUID = 1L;
 

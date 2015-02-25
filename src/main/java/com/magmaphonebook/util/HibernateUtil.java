@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.magmaagenda.util;
+package com.magmaphonebook.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

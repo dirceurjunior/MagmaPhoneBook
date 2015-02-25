@@ -2,29 +2,28 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.magmaagenda.util;
+package com.magmaphonebook.util;
 
 /**
  *
  * @author Dirceu Junior
  */
-public class DAOException extends Exception {
+public class UtilException extends Exception {
 
     /**
-     * Creates a new instance of <code>DAOException</code> without detail
+     * Creates a new instance of <code>UtilException</code> without detail
      * message.
      */
-    public DAOException() {
+    public UtilException() {
     }
 
     /**
-     * Constructs an instance of <code>DAOException</code> with the specified
+     * Constructs an instance of <code>UtilException</code> with the specified
      * detail message.
      *
      * @param msg the detail message.
      */
-    public DAOException(String msg) {
+    public UtilException(String msg) {
         super(msg);
     }
-
 }

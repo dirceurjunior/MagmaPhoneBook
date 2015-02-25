@@ -1,9 +1,9 @@
-package br.com.magmaagenda.util;
+package com.magmaphonebook.util;
 
 import com.magmaphonebook.model.phone.PhoneDAO;
 import com.magmaphonebook.model.phone.PhoneDAOHibernate;
-import br.com.magmaagenda.modelo.usuario.UsuarioDAO;
-import br.com.magmaagenda.modelo.usuario.UsuarioDAOHibernate;
+import com.magmaphonebook.model.user.UserDAO;
+import com.magmaphonebook.model.user.UserDAOHibernate;
 
 /**
  *
@@ -11,8 +11,8 @@ import br.com.magmaagenda.modelo.usuario.UsuarioDAOHibernate;
  */
 public class DAOFactory {
 
-   public static UsuarioDAO criarUsuarioDAO() {
-      UsuarioDAOHibernate usuarioDAO = new UsuarioDAOHibernate();
+   public static UserDAO criarUsuarioDAO() {
+      UserDAOHibernate usuarioDAO = new UserDAOHibernate();
       usuarioDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
       return usuarioDAO;
    }

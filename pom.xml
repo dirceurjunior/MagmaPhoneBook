@@ -3,11 +3,11 @@
    <modelVersion>4.0.0</modelVersion>
 
    <groupId>br.com.magmaagenda</groupId>
-   <artifactId>MagmaAgenda</artifactId>
+   <artifactId>MagmaPhoneBook</artifactId>
    <version>1.0</version>
    <packaging>war</packaging>
 
-   <name>MagmaAgenda</name>
+   <name>MagmaPhoneBook</name>
 
   <properties>
       <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>

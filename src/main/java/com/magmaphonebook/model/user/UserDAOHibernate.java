@@ -1,10 +1,10 @@
-package br.com.magmaagenda.modelo.usuario;
+package com.magmaphonebook.model.user;
 
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-public class UsuarioDAOHibernate implements UsuarioDAO {
+public class UserDAOHibernate implements UserDAO {
 
     private Session session;
 
@@ -13,14 +13,14 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
     }
 
     @Override
-    public void salvar(Usuario usuario) {
+    public void salvar(User usuario) {
         this.session.save(usuario);
     }
 
     @Override
-    public void atualizar(Usuario usuario) {
+    public void atualizar(User usuario) {
         if (usuario.getPermissao() == null || usuario.getPermissao().size() == 0) {
-            Usuario usuarioPermissao = this.carregar(usuario.getId());
+            User usuarioPermissao = this.carregar(usuario.getId());
             usuario.setPermissao(usuarioPermissao.getPermissao());
             this.session.evict(usuarioPermissao);
         }
@@ -28,35 +28,35 @@ public class UsuarioDAOHibernate implements UsuarioDAO {
     }
 
     @Override
-    public void excluir(Usuario usuario) {
+    public void excluir(User usuario) {
         this.session.delete(usuario);
     }
 
     @Override
-    public Usuario carregar(Integer codigo) {
-        //TODO o hibernate nao conseguira fazer a carga caso seja passado o Usuario
+    public User carregar(Integer codigo) {
+        //TODO o hibernate nao conseguira fazer a carga caso seja passado o User
         // no parametro, tem que ser diretamente a chave (integer)
-        return (Usuario) this.session.get(Usuario.class, codigo);
+        return (User) this.session.get(User.class, codigo);
     }
 
     @Override
-    public Usuario buscarPorLogin(String login) {
+    public User buscarPorLogin(String login) {
         String hql = "select u from Usuario u where u.login = :login";
         Query consulta = this.session.createQuery(hql);
         consulta.setString("login", login);
 
         //TODO mostrar primeiramente com o list e depois apresentar o uniqueResult
-        return (Usuario) consulta.uniqueResult();
+        return (User) consulta.uniqueResult();
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Usuario> listar() {
-        return this.session.createCriteria(Usuario.class).list();
+    public List<User> listar() {
+        return this.session.createCriteria(User.class).list();
     }
 
    @Override
-   public Usuario buscarPorEmail(String email) {
+   public User buscarPorEmail(String email) {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 }

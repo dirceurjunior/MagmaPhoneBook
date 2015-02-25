@@ -5,7 +5,7 @@
  */
 package com.magmaphonebook.model.phone;
 
-import br.com.magmaagenda.util.DAOFactory;
+import com.magmaphonebook.util.DAOFactory;
 import java.util.List;
 
 /**

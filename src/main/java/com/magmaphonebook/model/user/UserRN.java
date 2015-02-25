@@ -1,25 +1,25 @@
-package br.com.magmaagenda.modelo.usuario;
+package com.magmaphonebook.model.user;
 
-import br.com.magmaagenda.util.DAOFactory;
+import com.magmaphonebook.util.DAOFactory;
 import java.util.List;
 
-public class UsuarioRN {
+public class UserRN {
 
-   private UsuarioDAO usuarioDAO;
+   private UserDAO usuarioDAO;
 
-   public UsuarioRN() {
+   public UserRN() {
       this.usuarioDAO = DAOFactory.criarUsuarioDAO();
    }
 
-   public Usuario carregar(Integer id) {
+   public User carregar(Integer id) {
       return this.usuarioDAO.carregar(id);
    }
 
-   public Usuario buscarPorLogin(String login) {
+   public User buscarPorLogin(String login) {
       return this.usuarioDAO.buscarPorLogin(login);
    }
 
-   public void salvar(Usuario usuario) {
+   public void salvar(User usuario) {
 
       Integer id = usuario.getId();
       if (id == null || id == 0) {
@@ -32,14 +32,14 @@ public class UsuarioRN {
       }
    }
 
-   public void excluir(Usuario usuario) {
+   public void excluir(User usuario) {
       this.usuarioDAO.excluir(usuario);
    }
 
-   public List<Usuario> listar() {
+   public List<User> listar() {
       return this.usuarioDAO.listar();
    }
-//	public void enviarEmailPosCadastramento(Usuario usuario) throws RNException {
+//	public void enviarEmailPosCadastramento(User usuario) throws RNException {
 //		//Enviando um e-mail conforme o idioma do usu�rio
 //		String[] info = usuario.getIdioma().split("_");
 //		Locale locale = new Locale(info[0], info[1]);
@@ -54,31 +54,31 @@ public class UsuarioRN {
 //		}
 //	}
 
-   public Usuario porCPF(String cpf) {
+   public User porCPF(String cpf) {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 
-   public Usuario porNome(String string) {
+   public User porNome(String string) {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 
-   public List<Usuario> listarTodos() {
+   public List<User> listarTodos() {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 
-   public List<Usuario> listarPorNome(String nome) {
+   public List<User> listarPorNome(String nome) {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 
-   public void atualizar(Usuario usuario) {
+   public void atualizar(User usuario) {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 
-   public Usuario porId(Integer id) {
+   public User porId(Integer id) {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 
-   public List<Usuario> porNomeSimples(String nome) {
+   public List<User> porNomeSimples(String nome) {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 }
