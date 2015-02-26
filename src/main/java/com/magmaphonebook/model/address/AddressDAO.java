@@ -27,6 +27,6 @@ public interface AddressDAO {
 
     public List<Address> listByName(String name);
 
-    public Integer retornaUltimoCodigo();
+    public Integer getLastRecord();
 
 }

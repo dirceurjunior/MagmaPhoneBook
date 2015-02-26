@@ -19,43 +19,43 @@ public class ContactRN {
       this.contactDAO = DAOFactory.createContactDAO();
    }
 
-   public void salvar(Contact cliente) {
-      this.contactDAO.salvar(cliente);
+   public void save(Contact contact) {
+      this.contactDAO.save(contact);
    }
 
-   public void atualizar(Contact cliente) {
-      this.contactDAO.atualizar(cliente);
+   public void update(Contact contact) {
+      this.contactDAO.update(contact);
    }
 
-   public void excluir(Contact cliente) {
-      this.contactDAO.excluir(cliente);
+   public void delete(Contact contact) {
+      this.contactDAO.delete(contact);
    }
 
-   public List<Contact> listarTodos() {
-      return this.contactDAO.listarTodos();
+   public List<Contact> listAll() {
+      return this.contactDAO.listAll();
    }
 
-   public List<Contact> listarPorNome(String nome) {
-      return this.contactDAO.listarPorNome(nome);
+   public List<Contact> listByName(String name) {
+      return this.contactDAO.listByName(name);
    }
 
-   public int buscaUltimoRegistro() {
-      return this.contactDAO.retornaUltimoId();
+   public int getLastId() {
+      return this.contactDAO.getLastId();
    }
 
-   public Contact porId(int id) {
-      return this.contactDAO.porId(id);
+   public Contact findById(int id) {
+      return this.contactDAO.findById(id);
    }
 
-   public Contact porNome(String nome) {
-      return this.contactDAO.porNome(nome);
+   public Contact findByName(String name) {
+      return this.contactDAO.findByName(name);
    }
 
-   public Contact porCPF(String cpf) {
-      return this.contactDAO.porCPF(cpf);
+   public Contact findByCPF(String cpf) {
+      return this.contactDAO.findByCPF(cpf);
    }
 
-   public List<Contact> porNomeSimples(String nome) {
-      return this.contactDAO.porNomeSimples(nome);
+   public List<Contact> findByNameSimple(String name) {
+      return this.contactDAO.findByNameSimple(name);
    }
 }

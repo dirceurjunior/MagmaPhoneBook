@@ -25,32 +25,32 @@ public class AddressDAOHibernate implements AddressDAO {
    }
 
    @Override
-   public void save(Address endereco) {
-      this.session.save(endereco);
+   public void save(Address address) {
+      this.session.save(address);
    }
 
    @Override
-   public void update(Address endereco) {
-      this.session.update(endereco);
+   public void update(Address address) {
+      this.session.update(address);
    }
 
    @Override
-   public void delete(Address endereco) {
-      this.session.delete(endereco);
+   public void delete(Address address) {
+      this.session.delete(address);
    }
 
    @Override
    public Address findById(Integer id) {
       Criteria criteria = this.session.createCriteria(Address.class).add(Restrictions.eq("id", id));
-      Address endereco = (Address) criteria.uniqueResult();
-      return endereco;
+      Address address = (Address) criteria.uniqueResult();
+      return address;
    }
 
    @Override
    public Address findByName(String name) {
       Criteria criteria = this.session.createCriteria(Address.class).add(Restrictions.eq("street", name));
-      Address endereco = (Address) criteria.uniqueResult();
-      return endereco;
+      Address address = (Address) criteria.uniqueResult();
+      return address;
    }
 
    @Override
@@ -64,7 +64,7 @@ public class AddressDAOHibernate implements AddressDAO {
    }
 
    @Override
-   public Integer retornaUltimoCodigo() {
+   public Integer getLastRecord() {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
    }
 

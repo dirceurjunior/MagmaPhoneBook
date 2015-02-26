@@ -41,8 +41,8 @@ public class ContactMB implements Serializable {
    private Phone phone;
    private Email email;
 
-   private List<Contact> listarTodos;
-   private List<Contact> listarPorNome;
+   private List<Contact> listAll;
+   private List<Contact> listByName;
 
    private String page;
 
@@ -60,16 +60,16 @@ public class ContactMB implements Serializable {
    }
 
    public String inserir() {
-      ContactRN pRN = new ContactRN();
+      ContactRN cRN = new ContactRN();
       if (this.contact.getId() != null && this.contact.getId() != 0) {
          prepararContact();
-         pRN.atualizar(getContact());
-         FacesMessage msg = new FacesMessage("PACIENTE ATUALIZADO COM SUCESSO!!!");
+         cRN.update(getContact());
+         FacesMessage msg = new FacesMessage("ATUALIZADO COM SUCESSO!!!");
          FacesContext.getCurrentInstance().addMessage(null, msg);
       } else {
          prepararContact();
-         pRN.salvar(getContact());
-         FacesMessage msg = new FacesMessage("PACIENTE CADASTRADO COM SUCESSO!!!");
+         cRN.save(getContact());
+         FacesMessage msg = new FacesMessage("CADASTRADO COM SUCESSO!!!");
          FacesContext.getCurrentInstance().addMessage(null, msg);
       }
       novo();
@@ -77,25 +77,25 @@ public class ContactMB implements Serializable {
    }
 
    public void atualizaRelacionamentos() {
-      ContactRN pRN = new ContactRN();
+      ContactRN cRN = new ContactRN();
       prepararContact();
-      pRN.atualizar(getContact());
+      cRN.update(getContact());
       FacesMessage msg = new FacesMessage("PACIENTE ATUALIZADO COM SUCESSO!!!");
       FacesContext.getCurrentInstance().addMessage(null, msg);
    }
 
    public void prepararContact() {
       contact.setAddress(listAddress);
-      contact.setPhones(listContacts);
+      contact.setPhones(listPhones);
       contact.setEmails(listEmails);
       contact.setAtivo(1);
-     
+
    }
 
-   public void excluir() {
-      ContactRN pRN = new ContactRN();
+   public void delete() {
+      ContactRN cRN = new ContactRN();
       if (this.contact.getId() != null && this.contact.getId() != 0) {
-         pRN.excluir(getContact());
+         cRN.delete(getContact());
          FacesMessage msg = new FacesMessage("PACIENTE EXCLUIDO COM SUCESSO!!!");
          FacesContext.getCurrentInstance().addMessage(null, msg);
       } else {
@@ -121,15 +121,15 @@ public class ContactMB implements Serializable {
    }
 
    public void editar() {
-      ContactRN pRN = new ContactRN();
-      contact = pRN.porId(contact.getId());
+      ContactRN cRN = new ContactRN();
+      contact = cRN.findById(contact.getId());
       listPhones = contact.getPhones();
-      listAddress = contact.getAddresss();
+      listAddress = contact.getAddress();
       listEmails = contact.getEmails();
-     
+
    }
 
-   //--------------------------------------------------------------- bloco referente aos emails 
+   //--------------------------------------------------------------- bloco referente aos listEmails 
    public void novoEmail() {
       email = new Email();
    }
@@ -137,14 +137,14 @@ public class ContactMB implements Serializable {
    public void addEmail() {
       EmailRN eRN = new EmailRN();
       if (email.getId() == null) {
-         eRN.salvar(email);
-         emails.add(email);
+         eRN.save(email);
+         listEmails.add(email);
       } else {
-         for (Iterator iterator = emails.iterator(); iterator.hasNext();) {
+         for (Iterator iterator = listEmails.iterator(); iterator.hasNext();) {
             Email e = (Email) iterator.next();
             if (Objects.equals(e.getId(), email.getId())) {
-               emails.set(emails.indexOf(e), email);
-               eRN.atualizar(email);
+               listEmails.set(listEmails.indexOf(e), email);
+               eRN.update(email);
             }
          }
       }
@@ -155,13 +155,13 @@ public class ContactMB implements Serializable {
       EmailRN eRN = new EmailRN();
       Email emailRemovido;
       if (this.contact.getId() != null && this.contact.getId() != 0) {
-         emails.remove(email);
+         listEmails.remove(email);
          emailRemovido = email;
          atualizaRelacionamentos();
-         eRN.excluir(emailRemovido);
+         eRN.delete(emailRemovido);
       } else {
-         emails.remove(email);
-         eRN.excluir(email);
+         listEmails.remove(email);
+         eRN.delete(email);
       }
       novoEmail();
    }
@@ -175,14 +175,14 @@ public class ContactMB implements Serializable {
    public void addPhone() {
       PhoneRN cRN = new PhoneRN();
       if (phone.getId() == null) {
-         cRN.salvar(phone);
-         phones.add(phone);
+         cRN.save(phone);
+         listPhones.add(phone);
       } else {
-         for (Iterator iterator = phones.iterator(); iterator.hasNext();) {
+         for (Iterator iterator = listPhones.iterator(); iterator.hasNext();) {
             Phone c = (Phone) iterator.next();
             if (Objects.equals(c.getId(), phone.getId())) {
-               phones.set(phones.indexOf(c), phone);
-               cRN.atualizar(phone);
+               listPhones.set(listPhones.indexOf(c), phone);
+               cRN.update(phone);
             }
          }
       }
@@ -196,16 +196,16 @@ public class ContactMB implements Serializable {
          phones.remove(phone);
          phoneRemovido = phone;
          atualizaRelacionamentos();
-         cRN.excluir(phoneRemovido);
+         cRN.delete(phoneRemovido);
       } else {
          phones.remove(phone);
-         cRN.excluir(phone);
+         cRN.delete(phone);
       }
       novoPhone();
    }
     //-------------------------------------------------------------------------------------------------------
 
-   //------------------------------------------------------------ bloco referente aos addresss 
+   //------------------------------------------------------------ bloco referente aos listAddress 
    public void novoAddress() {
       address = new Address();
    }
@@ -213,14 +213,14 @@ public class ContactMB implements Serializable {
    public void addAddress() {
       AddressRN eRN = new AddressRN();
       if (address.getId() == null) {
-         eRN.salvar(address);
-         addresss.add(address);
+         eRN.save(address);
+         listAddress.add(address);
       } else {
-         for (Iterator iterator = addresss.iterator(); iterator.hasNext();) {
+         for (Iterator iterator = listAddress.iterator(); iterator.hasNext();) {
             Address e = (Address) iterator.next();
             if (Objects.equals(e.getId(), address.getId())) {
-               addresss.set(addresss.indexOf(e), address);
-               eRN.atualizar(address);
+               listAddress.set(listAddress.indexOf(e), address);
+               eRN.update(address);
             }
          }
       }
@@ -231,13 +231,13 @@ public class ContactMB implements Serializable {
       AddressRN eRN = new AddressRN();
       Address addressRemovido;
       if (this.contact.getId() != null && this.contact.getId() != 0) {
-         addresss.remove(address);
+         listAddress.remove(address);
          addressRemovido = address;
          atualizaRelacionamentos();
-         eRN.excluir(addressRemovido);
+         eRN.delete(addressRemovido);
       } else {
-         addresss.remove(address);
-         eRN.excluir(address);
+         listAddress.remove(address);
+         eRN.delete(address);
       }
       novoAddress();
    }
@@ -245,15 +245,15 @@ public class ContactMB implements Serializable {
 
    //--------------------------------------------------------------------------------------------
    public List<Contact> getListarTodos() {
-      ContactRN pRN = new ContactRN();
-      listarTodos = pRN.listarTodos();
+      ContactRN cRN = new ContactRN();
+      listarTodos = cRN.listarTodos();
       return listarTodos;
    }
 
    public List<Contact> getListarPorNome() {
       if ((contact.getNome() != null) && (!contact.getNome().equals(""))) {
-         ContactRN pRN = new ContactRN();
-         listarPorNome = pRN.listarPorNome(contact.getNome());
+         ContactRN cRN = new ContactRN();
+         listarPorNome = cRN.listarPorNome(contact.getNome());
       } else {
          listarPorNome = null;
       }
@@ -262,8 +262,8 @@ public class ContactMB implements Serializable {
 
    public List<Contact> getListarPorNomeSimples() {
       if ((contact.getNome() != null) && (!contact.getNome().equals(""))) {
-         ContactRN pRN = new ContactRN();
-         listarPorNome = pRN.porNomeSimples(contact.getNome());
+         ContactRN cRN = new ContactRN();
+         listarPorNome = cRN.porNomeSimples(contact.getNome());
       } else {
          listarPorNome = null;
       }
@@ -271,8 +271,8 @@ public class ContactMB implements Serializable {
    }
 
    public List<Contact> completaNome(String query) {
-      ContactRN pRN = new ContactRN();
-      this.contacts = pRN.listarTodos();
+      ContactRN cRN = new ContactRN();
+      this.contacts = cRN.listarTodos();
       List<Contact> sugestoes = new ArrayList<>();
       for (Contact j : this.contacts) {
          if (j.getNome().startsWith(query)) {
@@ -376,11 +376,11 @@ public class ContactMB implements Serializable {
    }
 
    public List<Address> getAddresss() {
-      return addresss;
+      return listAddress;
    }
 
-   public void setAddresss(List<Address> addresss) {
-      this.addresss = addresss;
+   public void setAddresss(List<Address> listAddress) {
+      this.listAddress = listAddress;
    }
 
    public List<Phone> getPhones() {
@@ -392,13 +392,11 @@ public class ContactMB implements Serializable {
    }
 
    public List<Email> getEmails() {
-      return emails;
+      return listEmails;
    }
 
-   public void setEmails(List<Email> emails) {
-      this.emails = emails;
+   public void setEmails(List<Email> listEmails) {
+      this.listEmails = listEmails;
    }
-   
-   
-  
+
 }

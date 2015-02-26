@@ -20,24 +20,24 @@ public class PhoneRN {
       this.phoneDAO = DAOFactory.createPhoneDAO();
    }
 
-   public void salvar(Phone phone) {
-      this.phoneDAO.salvar(phone);
+   public void save(Phone phone) {
+      this.phoneDAO.save(phone);
    }
 
-   public void atualizar(Phone phone) {
-      this.phoneDAO.atualizar(phone);
+   public void update(Phone phone) {
+      this.phoneDAO.update(phone);
    }
 
-   public void excluir(Phone phone) {
-      this.phoneDAO.excluir(phone);
+   public void delete(Phone phone) {
+      this.phoneDAO.delete(phone);
    }
 
-   public List<Phone> listarTodos() {
-      return this.phoneDAO.listarTodos();
+   public List<Phone> listAll() {
+      return this.phoneDAO.listAll();
    }
 
-   public Phone porId(int id) {
-      return this.phoneDAO.porId(id);
+   public Phone findById(int id) {
+      return this.phoneDAO.findById(id);
    }
 
 }

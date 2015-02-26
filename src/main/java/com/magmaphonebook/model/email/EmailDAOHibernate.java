@@ -25,42 +25,32 @@ public class EmailDAOHibernate implements EmailDAO {
     }
 
     @Override
-    public void salvar(Email email) {
+    public void save(Email email) {
         this.session.save(email);
     }
 
     @Override
-    public void atualizar(Email email) {
+    public void update(Email email) {
         this.session.update(email);
     }
 
     @Override
-    public void excluir(Email email) {
+    public void delete(Email email) {
         this.session.delete(email);
     }
 
     @Override
-    public Email porId(Integer id) {
+    public Email findById(Integer id) {
         Criteria criteria = this.session.createCriteria(Email.class).add(Restrictions.eq("id", id));
         Email email = (Email) criteria.uniqueResult();
         return email;
     }
 
     @Override
-    public Email porNome(String nome) {
-        Criteria criteria = this.session.createCriteria(Email.class).add(Restrictions.eq("email", nome));
-        Email email = (Email) criteria.uniqueResult();
-        return email;
+    public List<Email> listAll() {
+        return this.session.createCriteria(Email.class).addOrder(Order.asc("email")).list();
     }
 
-    @Override
-    public List<Email> listarTodos() {
-        return this.session.createCriteria(Email.class).addOrder(Order.asc("logradouro")).list();
-    }
-
-    @Override
-    public List<Email> listarPorNome(String nome) {
-        return this.session.createCriteria(Email.class).add(Restrictions.like("logradouro", nome, MatchMode.ANYWHERE)).addOrder(Order.asc("logradouro")).list();
-    }
+  
 
 }

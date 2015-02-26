@@ -7,6 +7,7 @@ package com.magmaphonebook.model.contact;
 
 import com.magmaphonebook.model.address.Address;
 import com.magmaphonebook.model.email.Email;
+import com.magmaphonebook.model.phone.Phone;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -79,22 +80,22 @@ public class Contact implements Serializable {
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    @JoinTable(
            name = "contact_address",
-           joinColumns = @JoinColumn(name = "paciente_id"),
-           inverseJoinColumns = @JoinColumn(name = "endereco_id"))
+           joinColumns = @JoinColumn(name = "contact_id"),
+           inverseJoinColumns = @JoinColumn(name = "address_id"))
    private List<Address> address;
 
    //////////////////////////////////////// MAPEAMENTO COM CONTATOS
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    @JoinTable(
-           name = "contact_phone",
-           joinColumns = @JoinColumn(name = "paciente_id"),
-           inverseJoinColumns = @JoinColumn(name = "contato_id"))
-   private List<Contact> phones;
+           name = "contact_phones",
+           joinColumns = @JoinColumn(name = "contact_id"),
+           inverseJoinColumns = @JoinColumn(name = "phone_id"))
+   private List<Phone> phones;
 
    //////////////////////////////////////// MAPEAMENTO COM EMAILS
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-   @JoinTable(name = "contact_email",
-           joinColumns = @JoinColumn(name = "paciente_id"),
+   @JoinTable(name = "contact_emails",
+           joinColumns = @JoinColumn(name = "contact_id"),
            inverseJoinColumns = @JoinColumn(name = "email_id"))
    private List<Email> emails;
 
@@ -242,11 +243,11 @@ public class Contact implements Serializable {
       this.address = address;
    }
 
-   public List<Contact> getPhones() {
+   public List<Phone> getPhones() {
       return phones;
    }
 
-   public void setPhones(List<Contact> phones) {
+   public void setPhones(List<Phone> phones) {
       this.phones = phones;
    }
 
@@ -257,7 +258,5 @@ public class Contact implements Serializable {
    public void setEmails(List<Email> emails) {
       this.emails = emails;
    }
-   
-   
 
 }

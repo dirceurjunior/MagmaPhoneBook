@@ -25,53 +25,89 @@ public class AddressMB implements Serializable {
 
    private static final long serialVersionUID = 1L;
 
-   private Address selecionado;
-   private Address address = new Address();
-   private List<Address> listarTodos;
-   private List<Address> listarPorNome;
-   private String pagina;
+   private Address address;
+
+   private Address selected;
+
+   private List<Address> listAll;
+
+   private List<Address> listByName;
+
+   private String page;
 
    public AddressMB() {
-      this.pagina = "addresss";
+      this.page = "address";
       address = new Address();
    }
 
    public String inserir() {
       AddressRN eRN = new AddressRN();
       if (this.address.getId() != null && this.address.getId() != 0) {
-         eRN.atualizar(getAddress());
-         FacesMessage msg = new FacesMessage("PACIENTE ATUALIZADO COM SUCESSO!!!");
+         eRN.update(getAddress());
+         FacesMessage msg = new FacesMessage("ATUALIZADO COM SUCESSO!!!");
          FacesContext.getCurrentInstance().addMessage(null, msg);
       } else {
-         eRN.salvar(getAddress());
-         FacesMessage msg = new FacesMessage("PACIENTE CADASTRADO COM SUCESSO!!!");
+         eRN.save(getAddress());
+         FacesMessage msg = new FacesMessage("CADASTRADO COM SUCESSO!!!");
          FacesContext.getCurrentInstance().addMessage(null, msg);
       }
-      return pagina;
+      return page;
    }
 
    public String excluir() {
       AddressRN eRN = new AddressRN();
       if (this.address.getId() != null && this.address.getId() != 0) {
-         eRN.excluir(getAddress());
-         FacesMessage msg = new FacesMessage("PACIENTE EXCLUIDO COM SUCESSO!!!");
+         eRN.delete(getAddress());
+         FacesMessage msg = new FacesMessage("EXCLUIDO COM SUCESSO!!!");
          FacesContext.getCurrentInstance().addMessage(null, msg);
       } else {
-         FacesMessage msg = new FacesMessage("FAVOR SELECIONAR PACIENTE PARA EXCLUSÃO!!!");
+         FacesMessage msg = new FacesMessage("FAVOR SELECIONAR PARA EXCLUSÃO!!!");
          FacesContext.getCurrentInstance().addMessage(null, msg);
       }
-      return pagina;
+      return page;
    }
 
    public String editar() {
       AddressRN eRN = new AddressRN();
-      address = eRN.porId(address.getId());
-      return pagina;
+      address = eRN.findById(address.getId());
+      return page;
    }
 
    public String novo() {
       this.address = new Address();
-      return pagina;
+      return page;
+   }
+
+   public List<Address> getListAll() {
+      AddressRN eRN = new AddressRN();
+      listAll = eRN.listAll();
+      return listAll;
+   }
+
+   public void setListAll(List<Address> listAll) {
+      this.listAll = listAll;
+   }
+
+   public List<Address> getListByName() {
+      AddressRN eRN = new AddressRN();
+      listByName = eRN.listByName(address.getStreet());
+      return listByName;
+   }
+
+   public void setListByName(List<Address> listByName) {
+      this.listByName = listByName;
+   }
+
+   public List<Address> completeName(String query) {
+      AddressRN eRN = new AddressRN();
+      this.listAll = eRN.listAll();
+      List<Address> results = new ArrayList<Address>();
+      for (Address j : this.listAll) {
+         if (j.getStreet().startsWith(query)) {
+            results.add(j);
+         }
+      }
+      return results;
    }
 
    public Address getAddress() {
@@ -82,44 +118,20 @@ public class AddressMB implements Serializable {
       this.address = address;
    }
 
-   public List<Address> getListarTodos() {
-      AddressRN eRN = new AddressRN();
-      listarTodos = eRN.listarTodos();
-      return listarTodos;
+   public Address getSelected() {
+      return selected;
    }
 
-   public void setListarTodos(List<Address> listar) {
-      this.listarTodos = listar;
+   public void setSelected(Address selected) {
+      this.selected = selected;
    }
 
-   public List<Address> getListarPorNome() {
-      AddressRN eRN = new AddressRN();
-      listarPorNome = eRN.listarPorNome(address.getLogradouro());
-      return listarPorNome;
+   public String getPage() {
+      return page;
    }
 
-   public void setListarPorNome(List<Address> listarPorNome) {
-      this.listarPorNome = listarPorNome;
-   }
-
-   public String getPagina() {
-      return pagina;
-   }
-
-   public void setPagina(String pagina) {
-      this.pagina = pagina;
-   }
-
-   public List<Address> completaNome(String query) {
-      AddressRN eRN = new AddressRN();
-      this.addresss = eRN.listarTodos();
-      List<Address> sugestoes = new ArrayList<Address>();
-      for (Address j : this.addresss) {
-         if (j.getLogradouro().startsWith(query)) {
-            sugestoes.add(j);
-         }
-      }
-      return sugestoes;
+   public void setPage(String page) {
+      this.page = page;
    }
 
 }

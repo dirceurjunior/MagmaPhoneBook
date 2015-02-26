@@ -20,28 +20,28 @@ public class AddressRN {
       this.addressDAO = DAOFactory.createAddressDAO();
    }
 
-   public void salvar(Address address) {
+   public void save(Address address) {
       this.addressDAO.save(address);
    }
 
-   public void atualizar(Address address) {
+   public void update(Address address) {
       this.addressDAO.update(address);
    }
 
-   public void excluir(Address address) {
+   public void delete(Address address) {
       this.addressDAO.delete(address);
    }
 
-   public List<Address> listarTodos() {
+   public List<Address> listAll() {
       return this.addressDAO.listAll();
    }
 
-   public List<Address> listarPorNome(String name) {
+   public List<Address> listByName(String name) {
       return this.addressDAO.listByName(name);
    }
 
-   public int buscaUltimoRegistro() {
-      return this.addressDAO.retornaUltimoCodigo();
+   public int getLastRecord() {
+      return this.addressDAO.getLastRecord();
    }
 
    public Address findById(int id) {

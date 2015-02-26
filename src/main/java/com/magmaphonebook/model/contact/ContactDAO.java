@@ -12,24 +12,24 @@ import java.util.List;
  */
 public interface ContactDAO {
 
-    public void salvar(Contact cliente);
+    public void save(Contact contact);
 
-    public void atualizar(Contact cliente);
+    public void update(Contact contact);
 
-    public void excluir(Contact cliente);
+    public void delete(Contact contact);
     
-    public Contact porId(Integer id);
+    public Contact findById(Integer id);
     
-    public Contact porNome (String nome);
+    public Contact findByName (String name);
 
-    public List<Contact> listarTodos();
+    public List<Contact> listAll();
 
-    public List<Contact> listarPorNome(String nome);
+    public List<Contact> listByName(String name);
     
-    public Integer retornaUltimoId();
+    public Integer getLastId();
     
-    public Contact porCPF(String cpf);
+    public Contact findByCPF(String cpf);
     
-    public List<Contact> porNomeSimples(String nome);
+    public List<Contact> findByNameSimple(String name);
     
 }

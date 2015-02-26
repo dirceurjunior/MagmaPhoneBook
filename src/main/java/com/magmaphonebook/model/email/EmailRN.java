@@ -14,38 +14,30 @@ import java.util.List;
  */
 public class EmailRN {
 
-   private final EmailDAO emailDAO;
+    private final EmailDAO emailDAO;
 
-   public EmailRN() {
-      this.emailDAO = DAOFactory.createEmailDAO();
-   }
+    public EmailRN() {
+        this.emailDAO = DAOFactory.createEmailDAO();
+    }
 
-   public void salvar(Email email) {
-      this.emailDAO.salvar(email);
-   }
+    public void save(Email email) {
+        this.emailDAO.save(email);
+    }
 
-   public void atualizar(Email email) {
-      this.emailDAO.atualizar(email);
-   }
+    public void update(Email email) {
+        this.emailDAO.update(email);
+    }
 
-   public void excluir(Email email) {
-      this.emailDAO.excluir(email);
-   }
+    public void delete(Email email) {
+        this.emailDAO.delete(email);
+    }
 
-   public List<Email> listarTodos() {
-      return this.emailDAO.listarTodos();
-   }
+    public Email findById(int id) {
+        return this.emailDAO.findById(id);
+    }
 
-   public List<Email> listarPorNome(String nome) {
-      return this.emailDAO.listarPorNome(nome);
-   }
-
-   public Email porId(int id) {
-      return this.emailDAO.porId(id);
-   }
-
-   public Email porNome(String nome) {
-      return this.emailDAO.porNome(nome);
-   }
+    public List<Email> listAll() {
+        return this.emailDAO.listAll();
+    }
 
 }
