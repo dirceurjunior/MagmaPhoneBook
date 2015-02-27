@@ -3,9 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans 
                             http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
-   <bean id="MagmaAgendaDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+   <bean id="MagmaPhoneBookDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
       <property name="jndiName">
-         <value>java:comp/env/jdbc/MagmaAgendaDB</value>
+         <value>java:comp/env/jdbc/MagmaPhoneBookDB</value>
       </property>
    </bean>
    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">  
