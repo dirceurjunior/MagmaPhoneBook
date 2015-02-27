@@ -23,7 +23,6 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-
 import org.primefaces.event.SelectEvent;
 
 /**
@@ -59,7 +58,7 @@ public class ContactMB implements Serializable {
       this.email = new Email();
    }
 
-   public String inserir() {
+   public String save() {
       ContactRN cRN = new ContactRN();
       if (this.contact.getId() != null && this.contact.getId() != 0) {
          prepararContact();
@@ -72,7 +71,7 @@ public class ContactMB implements Serializable {
          FacesMessage msg = new FacesMessage("CADASTRADO COM SUCESSO!!!");
          FacesContext.getCurrentInstance().addMessage(null, msg);
       }
-      novo();
+      newContact();
       return getPage();
    }
 
@@ -80,7 +79,7 @@ public class ContactMB implements Serializable {
       ContactRN cRN = new ContactRN();
       prepararContact();
       cRN.update(getContact());
-      FacesMessage msg = new FacesMessage("PACIENTE ATUALIZADO COM SUCESSO!!!");
+      FacesMessage msg = new FacesMessage("ATUALIZADO COM SUCESSO!!!");
       FacesContext.getCurrentInstance().addMessage(null, msg);
    }
 
@@ -102,10 +101,10 @@ public class ContactMB implements Serializable {
          FacesMessage msg = new FacesMessage("FAVOR SELECIONAR PACIENTE PARA EXCLUSÃO!!!");
          FacesContext.getCurrentInstance().addMessage(null, msg);
       }
-      novo();
+      newContact();
    }
 
-   public String novo() {
+   public String newContact() {
       this.contact = new Contact();
       this.address = new Address();
       this.phone = new Phone();
@@ -130,7 +129,7 @@ public class ContactMB implements Serializable {
    }
 
    //--------------------------------------------------------------- bloco referente aos listEmails 
-   public void novoEmail() {
+   public void newEmail() {
       email = new Email();
    }
 
@@ -148,7 +147,7 @@ public class ContactMB implements Serializable {
             }
          }
       }
-      novoEmail();
+      newEmail();
    }
 
    public void removeEmail() {
@@ -163,12 +162,12 @@ public class ContactMB implements Serializable {
          listEmails.remove(email);
          eRN.delete(email);
       }
-      novoEmail();
+      newEmail();
    }
     //-------------------------------------------------------------------------------------------------------
 
    //--------------------------------------------------------------- bloco referente aos phones 
-   public void novoPhone() {
+   public void newPhone() {
       phone = new Phone();
    }
 
@@ -186,27 +185,27 @@ public class ContactMB implements Serializable {
             }
          }
       }
-      novoPhone();
+      newPhone();
    }
 
    public void removePhone() {
       PhoneRN cRN = new PhoneRN();
       Phone phoneRemovido;
       if (this.contact.getId() != null && this.contact.getId() != 0) {
-         phones.remove(phone);
+         listPhones.remove(phone);
          phoneRemovido = phone;
          atualizaRelacionamentos();
          cRN.delete(phoneRemovido);
       } else {
-         phones.remove(phone);
+         listPhones.remove(phone);
          cRN.delete(phone);
       }
-      novoPhone();
+      newPhone();
    }
     //-------------------------------------------------------------------------------------------------------
 
    //------------------------------------------------------------ bloco referente aos listAddress 
-   public void novoAddress() {
+   public void newAddress() {
       address = new Address();
    }
 
@@ -224,7 +223,7 @@ public class ContactMB implements Serializable {
             }
          }
       }
-      novoAddress();
+      newAddress();
    }
 
    public void removeAddress() {
@@ -239,164 +238,121 @@ public class ContactMB implements Serializable {
          listAddress.remove(address);
          eRN.delete(address);
       }
-      novoAddress();
+      newAddress();
    }
     //-------------------------------------------------------------------------------------------------------
 
    //--------------------------------------------------------------------------------------------
-   public List<Contact> getListarTodos() {
+   public List<Contact> getListAll() {
       ContactRN cRN = new ContactRN();
-      listarTodos = cRN.listarTodos();
-      return listarTodos;
+      listAll = cRN.listAll();
+      return listAll;
    }
 
-   public List<Contact> getListarPorNome() {
+   public List<Contact> getListByName() {
       if ((contact.getNome() != null) && (!contact.getNome().equals(""))) {
          ContactRN cRN = new ContactRN();
-         listarPorNome = cRN.listarPorNome(contact.getNome());
+         listByName = cRN.listByName(contact.getNome());
       } else {
-         listarPorNome = null;
+         listByName = null;
       }
-      return listarPorNome;
+      return listByName;
    }
 
-   public List<Contact> getListarPorNomeSimples() {
+   public List<Contact> getListByNameSimple() {
       if ((contact.getNome() != null) && (!contact.getNome().equals(""))) {
          ContactRN cRN = new ContactRN();
-         listarPorNome = cRN.porNomeSimples(contact.getNome());
+         listByName = cRN.findByNameSimple(contact.getNome());
       } else {
-         listarPorNome = null;
+         listByName = null;
       }
-      return listarPorNome;
+      return listByName;
    }
 
-   public List<Contact> completaNome(String query) {
+   public List<Contact> completeName(String query) {
       ContactRN cRN = new ContactRN();
-      this.contacts = cRN.listarTodos();
-      List<Contact> sugestoes = new ArrayList<>();
-      for (Contact j : this.contacts) {
+      this.listContacts = cRN.listAll();
+      List<Contact> results = new ArrayList<>();
+      for (Contact j : this.listContacts) {
          if (j.getNome().startsWith(query)) {
-            sugestoes.add(j);
+            results.add(j);
          }
       }
-      return sugestoes;
+      return results;
    }
 
-   public void adicionaConvenio(ValueChangeEvent event) {
-      int valor = Integer.parseInt(event.getNewValue().toString());
-      boolean controle = true;
-      for (Iterator iterator = convenios.iterator(); iterator.hasNext();) {
-         Convenio c = (Convenio) iterator.next();
-         if (c.getId() == valor) {
-            controle = false;
-         }
-      }
-      if (valor == 0) {
-      } else if ((controle)) {
-         ConvenioRN cRN = new ConvenioRN();
-         convenios.add(cRN.porId(Integer.parseInt(event.getNewValue().toString())));
-      } else {
-         FacesMessage msg = new FacesMessage("CONVÊNIO JÁ SELECIONADO!!!");
-         FacesContext.getCurrentInstance().addMessage(null, msg);
-      }
-   }
+    public Contact getContact() {
+        return contact;
+    }
 
-   public void removeConvenio() {
-      convenios.remove(convenio);
-      convenio = new Convenio();
-   }
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
 
-   public void conveniosPorContact(SelectEvent event) {
-      convenios.clear();
-      contact = (Contact) event.getObject();
-      convenios.addAll(contact.getConvenios());
-   }
+    public Address getAddress() {
+        return address;
+    }
 
-   public void exportarPDF(ActionEvent actionEvent) throws JRException, IOException {
-      File jasper = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/relatorios/Contact.jasper"));
-      JasperPrint jasperPrint = JasperFillManager.fillReport(jasper.getPath(), null, new JRBeanCollectionDataSource(this.getContacts()));
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
-      HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-      response.addHeader("Content-disposition", "attachment; filename=jsfReporte.pdf");
-      ServletOutputStream stream = response.getOutputStream();
+    public Phone getPhone() {
+        return phone;
+    }
 
-      JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
-      stream.flush();
-      stream.close();
+    public void setPhone(Phone phone) {
+        this.phone = phone;
+    }
 
-      FacesContext.getCurrentInstance().responseComplete();
-   }
+    public Email getEmail() {
+        return email;
+    }
 
-   public Contact getContact() {
-      return contact;
-   }
+    public void setEmail(Email email) {
+        this.email = email;
+    }
 
-   public void setContact(Contact contact) {
-      this.contact = contact;
-   }
+    public String getPage() {
+        return page;
+    }
 
-   public Address getAddress() {
-      return address;
-   }
+    public void setPage(String page) {
+        this.page = page;
+    }
 
-   public void setAddress(Address address) {
-      this.address = address;
-   }
+    public List<Contact> getListContacts() {
+        return listContacts;
+    }
 
-   public Phone getPhone() {
-      return phone;
-   }
+    public void setListContacts(List<Contact> listContacts) {
+        this.listContacts = listContacts;
+    }
 
-   public void setPhone(Phone phone) {
-      this.phone = phone;
-   }
+    public List<Address> getListAddress() {
+        return listAddress;
+    }
 
-   public Email getEmail() {
-      return email;
-   }
+    public void setListAddress(List<Address> listAddress) {
+        this.listAddress = listAddress;
+    }
 
-   public void setEmail(Email email) {
-      this.email = email;
-   }
+    public List<Phone> getListPhones() {
+        return listPhones;
+    }
 
-   public String getPage() {
-      return page;
-   }
+    public void setListPhones(List<Phone> listPhones) {
+        this.listPhones = listPhones;
+    }
 
-   public void setPage(String page) {
-      this.page = page;
-   }
+    public List<Email> getListEmails() {
+        return listEmails;
+    }
 
-   public List<Contact> getContacts() {
-      return contacts;
-   }
-
-   public void setContacts(List<Contact> contacts) {
-      this.contacts = contacts;
-   }
-
-   public List<Address> getAddresss() {
-      return listAddress;
-   }
-
-   public void setAddresss(List<Address> listAddress) {
-      this.listAddress = listAddress;
-   }
-
-   public List<Phone> getPhones() {
-      return phones;
-   }
-
-   public void setPhones(List<Phone> phones) {
-      this.phones = phones;
-   }
-
-   public List<Email> getEmails() {
-      return listEmails;
-   }
-
-   public void setEmails(List<Email> listEmails) {
-      this.listEmails = listEmails;
-   }
-
+    public void setListEmails(List<Email> listEmails) {
+        this.listEmails = listEmails;
+    }
+   
+   
+  
 }
