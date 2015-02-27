@@ -4,12 +4,12 @@
  */
 package com.magmaphonebook.mb;
 
+import com.magmaphonebook.model.stateCity.City;
+import com.magmaphonebook.model.stateCity.State;
+import com.magmaphonebook.model.stateCity.StateCityRN;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.event.ValueChangeEvent;
-import br.com.magmadoctor.modelo.estadoMunicipio.Estado;
-import br.com.magmadoctor.modelo.estadoMunicipio.EstadoMunicipioRN;
-import br.com.magmadoctor.modelo.estadoMunicipio.Municipio;
 import javax.faces.bean.ViewScoped;
 
 /**
@@ -20,59 +20,85 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class StateCityMB {
 
-    private Municipio municipio;
-    private Estado estado;
-    private List<Municipio> listaMunicipios;
-    private List<Estado> listaEstados;
-    private boolean controle = false;
+    private City city;
+    private State state;
+    private List<City> listCities;
+    private List<State> listStates;
+    private boolean control = false;
 
     public StateCityMB() {
-        municipio = new Municipio();
-        estado = new Estado();
+        city = new City();
+        state = new State();
     }
 
-    public Municipio getCidade() {
-        return municipio;
+    public City getCidade() {
+        return city;
     }
 
-    public void setCidade(Municipio municipio) {
-        this.municipio = municipio;
+    public void setCidade(City city) {
+        this.city = city;
     }
 
-    public Estado getEstado() {
-        return estado;
+    public State getState() {
+        return state;
     }
 
-    public void setEstado(Estado estado) {
-        this.estado = estado;
+    public void setState(State state) {
+        this.state = state;
     }
 
-    public List<Municipio> getListaMunicipios() {
-        return listaMunicipios;
+    public List<City> getListCitys() {
+        return listCities;
     }
 
-    public void setListaCidades(List<Municipio> listaMunicipios) {
-        this.listaMunicipios = listaMunicipios;
+    public void setListCidades(List<City> listCities) {
+        this.listCities = listCities;
     }
 
-    public List<Estado> getListaEstados() {
-        EstadoMunicipioRN estMunRN = new EstadoMunicipioRN();
-        listaEstados = estMunRN.listarEstados();
-        return listaEstados;
+    public List<State> getListStates() {
+        StateCityRN scRN = new StateCityRN();
+        listStates = scRN.listStates();
+        return listStates;
     }
 
-    public void setListaEstados(List<Estado> listaEstados) {
-        this.listaEstados = listaEstados;
+    public void setListStates(List<State> listStates) {
+        this.listStates = listStates;
     }
 
-    public void carregaCidades(ValueChangeEvent event) {
-        int valor = Integer.parseInt(event.getNewValue().toString());
-        if (valor != 0) {
-            controle = true;
-            listaMunicipios = null;
-            EstadoMunicipioRN estMunRN = new EstadoMunicipioRN();
-            listaMunicipios = estMunRN.buscarPorUF(Integer.parseInt(event.getNewValue().toString()));
+    public void updateCities(ValueChangeEvent event) {
+        int value = Integer.parseInt(event.getNewValue().toString());
+        if (value != 0) {
+            control = true;
+            listCities = null;
+            StateCityRN scRN = new StateCityRN();
+            listCities = scRN.findByUF(Integer.parseInt(event.getNewValue().toString()));
         }
     }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public List<City> getListCities() {
+        return listCities;
+    }
+
+    public void setListCities(List<City> listCities) {
+        this.listCities = listCities;
+    }
+
+    public boolean isControl() {
+        return control;
+    }
+
+    public void setControl(boolean control) {
+        this.control = control;
+    }
+    
+    
 
 }

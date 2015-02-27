@@ -18,8 +18,8 @@ public class State implements Serializable {
     @Id
     private Integer id;
     @NaturalId
-    private String nome;
-    private String sigla;
+    private String name;
+    private String acronym;
     private Integer ibge;
 
     public Integer getId() {
@@ -30,20 +30,20 @@ public class State implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSigla() {
-        return sigla;
+    public String getAcronym() {
+        return acronym;
     }
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
+    public void setAcronym(String acronym) {
+        this.acronym = acronym;
     }
 
     public Integer getIbge() {

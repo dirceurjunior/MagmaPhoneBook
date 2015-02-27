@@ -17,9 +17,9 @@ public class City implements Serializable {
 
     @Id
     private Integer id;
-    private String nome;
+    private String name;
     private Integer ibge;
-    private String estado_id;
+    private String state_id;
 
     public Integer getId() {
         return id;
@@ -29,12 +29,12 @@ public class City implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getIbge() {
@@ -45,12 +45,12 @@ public class City implements Serializable {
         this.ibge = ibge;
     }
 
-    public String getEstado_id() {
-        return estado_id;
+    public String getState_id() {
+        return state_id;
     }
 
-    public void setEstado_id(String estado_id) {
-        this.estado_id = estado_id;
+    public void setState_id(String state_id) {
+        this.state_id = state_id;
     }
 
 }

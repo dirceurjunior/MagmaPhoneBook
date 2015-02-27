@@ -13,14 +13,14 @@ import java.util.List;
  */
 public interface PhoneDAO {
 
-    public void salvar(Phone contato);
+    public void save(Phone phone);
 
-    public void atualizar(Phone contato);
+    public void update(Phone phone);
 
-    public void excluir(Phone contato);
+    public void delete(Phone phone);
 
-    public Phone porId(Integer id);
+    public Phone findById(Integer id);
 
-    public List<Phone> listarTodos();
+    public List<Phone> listAll();
 
 }

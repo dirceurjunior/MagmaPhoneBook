@@ -23,21 +23,21 @@ public class StateCityDAOHibernate implements StateCityDAO {
     }
 
     @Override
-    public List<State> listarEstados() {
-        Criteria l = this.session.createCriteria(State.class).addOrder(Order.asc("nome"));
-        List<State> lista = l.list();
-        return lista;
+    public List<State> listStates() {
+        Criteria l = this.session.createCriteria(State.class).addOrder(Order.asc("name"));
+        List<State> list = l.list();
+        return list;
     }
 
     @Override
-    public List<City> listarMunicipios() {
-        return this.session.createCriteria(City.class).addOrder(Order.asc("nome")).list();
+    public List<City> listCities() {
+        return this.session.createCriteria(City.class).addOrder(Order.asc("name")).list();
     }
 
     @Override
-    public List<City> buscarPorUF(Integer id) {
+    public List<City> findByUF(Integer id) {
         Criteria criteria = this.session.createCriteria(City.class);
-        criteria.add(Restrictions.eq("estado_id", String.valueOf(id)));
+        criteria.add(Restrictions.eq("state_id", String.valueOf(id)));
         return criteria.list();
     }
 }

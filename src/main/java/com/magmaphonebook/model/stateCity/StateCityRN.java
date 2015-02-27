@@ -12,22 +12,22 @@ import java.util.List;
  * @author Dirceu Junior
  */
 public class StateCityRN {
-    
+
     private final StateCityDAO stateCityDAO;
-    
-    public StateCityRN(){
+
+    public StateCityRN() {
         this.stateCityDAO = DAOFactory.createStateCityDAO();
     }
 
-    public List<State> listarEstados(){
-        return this.stateCityDAO.listarEstados();
+    public List<State> listStates() {
+        return this.stateCityDAO.listStates();
     }
-    
-    public List<City> listarMunicipios(){
-        return this.stateCityDAO.listarMunicipios();
+
+    public List<City> listCities() {
+        return this.stateCityDAO.listCities();
     }
-    
-    public List<City> buscarPorUF(Integer codigo){
-        return this.stateCityDAO.buscarPorUF(codigo);
+
+    public List<City> findByUF(Integer id) {
+        return this.stateCityDAO.findByUF(id);
     }
 }

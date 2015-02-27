@@ -23,29 +23,29 @@ public class PhoneDAOHibernate implements PhoneDAO {
     }
 
     @Override
-    public void salvar(Phone contato) {
-        this.session.save(contato);
+    public void save(Phone phone) {
+        this.session.save(phone);
     }
 
     @Override
-    public void atualizar(Phone contato) {
-        this.session.update(contato);
+    public void update(Phone phone) {
+        this.session.update(phone);
     }
 
     @Override
-    public void excluir(Phone contato) {
-        this.session.delete(contato);
+    public void delete(Phone phone) {
+        this.session.delete(phone);
     }
 
     @Override
-    public Phone porId(Integer id) {
+    public Phone findById(Integer id) {
         Criteria criteria = this.session.createCriteria(Phone.class).add(Restrictions.eq("id", id));
-        Phone contato = (Phone) criteria.uniqueResult();
-        return contato;
+        Phone phone = (Phone) criteria.uniqueResult();
+        return phone;
     }
 
     @Override
-    public List<Phone> listarTodos() {
+    public List<Phone> listAll() {
         return this.session.createCriteria(Phone.class).list();
     }
 
