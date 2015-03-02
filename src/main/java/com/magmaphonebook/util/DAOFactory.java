@@ -10,8 +10,8 @@ import com.magmaphonebook.model.phone.PhoneDAO;
 import com.magmaphonebook.model.phone.PhoneDAOHibernate;
 import com.magmaphonebook.model.stateCity.StateCityDAO;
 import com.magmaphonebook.model.stateCity.StateCityDAOHibernate;
-import com.magmaphonebook.model.user.UserDAO;
-import com.magmaphonebook.model.user.UserDAOHibernate;
+import com.magmaphonebook.model.users.UsersDAO;
+import com.magmaphonebook.model.users.UsersDAOHibernate;
 
 /**
  *
@@ -19,8 +19,8 @@ import com.magmaphonebook.model.user.UserDAOHibernate;
  */
 public class DAOFactory {
 
-   public static UserDAO createUserDAO() {
-      UserDAOHibernate userDAO = new UserDAOHibernate();
+   public static UsersDAO createUserDAO() {
+      UsersDAOHibernate userDAO = new UsersDAOHibernate();
       userDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
       return userDAO;
    }

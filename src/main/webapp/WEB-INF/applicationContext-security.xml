@@ -21,12 +21,12 @@
         <authentication-provider>
             <jdbc-user-service 
                 data-source-ref="MagmaPhoneBookDataSource" 
-                authorities-by-username-query="SELECT u.login, p.permission
-                                                FROM user u, user_permissao p 
-                                                WHERE u.id = p.usuario 
+                authorities-by-username-query="SELECT u.login, p.permissions
+                                                FROM users u, users_permissions p 
+                                                WHERE u.id = p.users 
                                                 AND u.login = ?"
-                users-by-username-query="SELECT login, senha, active
-                                            FROM usuario 
+                users-by-username-query="SELECT login, password, active
+                                            FROM users 
                                             WHERE login = ?"/> 
         </authentication-provider>
     </authentication-manager>

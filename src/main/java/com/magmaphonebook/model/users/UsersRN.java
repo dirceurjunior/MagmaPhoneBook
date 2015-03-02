@@ -1,25 +1,25 @@
-package com.magmaphonebook.model.user;
+package com.magmaphonebook.model.users;
 
 import com.magmaphonebook.util.DAOFactory;
 import java.util.List;
 
-public class UserRN {
+public class UsersRN {
 
-   private UserDAO userDAO;
+   private UsersDAO userDAO;
 
-   public UserRN() {
+   public UsersRN() {
       this.userDAO = DAOFactory.createUserDAO();
    }
 
-   public User carregar(Integer id) {
+   public Users carregar(Integer id) {
       return this.userDAO.load(id);
    }
 
-   public User buscarPorLogin(String login) {
+   public Users buscarPorLogin(String login) {
       return this.userDAO.findByLogin(login);
    }
 
-   public void salvar(User user) {
+   public void salvar(Users user) {
 
       Integer id = user.getId();
       if (id == null || id == 0) {
@@ -32,11 +32,11 @@ public class UserRN {
       }
    }
 
-   public void excluir(User user) {
+   public void excluir(Users user) {
       this.userDAO.delete(user);
    }
 
-   public List<User> listar() {
+   public List<Users> listar() {
       return this.userDAO.list();
    }
 
