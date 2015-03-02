@@ -20,85 +20,67 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class StateCityMB {
 
-    private City city;
-    private State state;
-    private List<City> listCities;
-    private List<State> listStates;
-    private boolean control = false;
+   private City city;
+   private State state;
+   private List<City> listCities;
+   private List<State> listStates;
+   private boolean control = false;
 
-    public StateCityMB() {
-        city = new City();
-        state = new State();
-    }
+   public StateCityMB() {
+      city = new City();
+      state = new State();
+   }
 
-    public City getCidade() {
-        return city;
-    }
+   public void updateCities(ValueChangeEvent event) {
+      int value = Integer.parseInt(event.getNewValue().toString());
+      if (value != 0) {
+         control = true;
+         listCities = null;
+         StateCityRN scRN = new StateCityRN();
+         listCities = scRN.findByUF(Integer.parseInt(event.getNewValue().toString()));
+      }
+   }
 
-    public void setCidade(City city) {
-        this.city = city;
-    }
+   public City getCity() {
+      return city;
+   }
 
-    public State getState() {
-        return state;
-    }
+   public void setCity(City city) {
+      this.city = city;
+   }
 
-    public void setState(State state) {
-        this.state = state;
-    }
+   public State getState() {
+      return state;
+   }
 
-    public List<City> getListCitys() {
-        return listCities;
-    }
+   public void setState(State state) {
+      this.state = state;
+   }
 
-    public void setListCidades(List<City> listCities) {
-        this.listCities = listCities;
-    }
+   public List<City> getListCities() {
+      return listCities;
+   }
 
-    public List<State> getListStates() {
-        StateCityRN scRN = new StateCityRN();
-        listStates = scRN.listStates();
-        return listStates;
-    }
+   public void setListCities(List<City> listCities) {
+      this.listCities = listCities;
+   }
 
-    public void setListStates(List<State> listStates) {
-        this.listStates = listStates;
-    }
+   public List<State> getListStates() {
+      StateCityRN scRN = new StateCityRN();
+      listStates = scRN.listStates();
+      return listStates;
+   }
 
-    public void updateCities(ValueChangeEvent event) {
-        int value = Integer.parseInt(event.getNewValue().toString());
-        if (value != 0) {
-            control = true;
-            listCities = null;
-            StateCityRN scRN = new StateCityRN();
-            listCities = scRN.findByUF(Integer.parseInt(event.getNewValue().toString()));
-        }
-    }
+   public void setListStates(List<State> listStates) {
+      this.listStates = listStates;
+   }
 
-    public City getCity() {
-        return city;
-    }
+   public boolean isControl() {
+      return control;
+   }
 
-    public void setCity(City city) {
-        this.city = city;
-    }
-
-    public List<City> getListCities() {
-        return listCities;
-    }
-
-    public void setListCities(List<City> listCities) {
-        this.listCities = listCities;
-    }
-
-    public boolean isControl() {
-        return control;
-    }
-
-    public void setControl(boolean control) {
-        this.control = control;
-    }
-    
-    
+   public void setControl(boolean control) {
+      this.control = control;
+   }
 
 }

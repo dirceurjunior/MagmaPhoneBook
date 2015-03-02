@@ -11,14 +11,11 @@
          <ui:define name="content">
             <h:form>
                <h:outputText id="loginativo" value="#{request.userPrincipal.name}"/>
-               <h:outputText id="permissoes" value="#{request.parameterMap.values}"/>
 
                <h:outputLink onclick="document.location = '#{request.contextPath}/j_spring_security_logout'" title="Sair">
                   SAIR
                </h:outputLink>
-               <h:commandLink class="btn btn-info btn-sm" action="/publico/login" value="Login"/>
-               <h:commandLink class="btn btn-info btn-sm" action="/publico/usuario" value="Cadastre-se"/>
-               <h:commandLink class="btn btn-warning btn-sm" action="/admin/mk" value="Config. Mikrotik"/>
+               <h:commandLink class="btn btn-info btn-sm" action="/limited/contact" value="Contatos"/>
             </h:form>
          </ui:define>
       </ui:composition>

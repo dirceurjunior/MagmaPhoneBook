@@ -8,11 +8,11 @@
                         http://www.springframework.org/schema/security/spring-security-3.2.xsd">
     <http>
         <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
-        <intercept-url pattern="/restrito/**" access="ROLE_USER"/>
-        <form-login login-page="/publico/login.jsf"
+        <intercept-url pattern="/limited/**" access="ROLE_USER"/>
+        <form-login login-page="/public/login.jsf"
                   always-use-default-target="true" 
-                  default-target-url="/restrito/principal.jsf"
-                  authentication-failure-url="/publico/login.jsf?login_error=1"/>
+                  default-target-url="/limited/main.jsf"
+                  authentication-failure-url="/public/login.jsf?login_error=1"/>
         <logout logout-success-url="http://www.google.com.br"/>
         <remember-me token-validity-seconds="120"/>
     </http>
@@ -21,11 +21,11 @@
         <authentication-provider>
             <jdbc-user-service 
                 data-source-ref="MagmaPhoneBookDataSource" 
-                authorities-by-username-query="SELECT u.login, p.permissao 
+                authorities-by-username-query="SELECT u.login, p.permission
                                                 FROM user u, user_permissao p 
                                                 WHERE u.id = p.usuario 
                                                 AND u.login = ?"
-                users-by-username-query="SELECT login, senha, ativo
+                users-by-username-query="SELECT login, senha, active
                                             FROM usuario 
                                             WHERE login = ?"/> 
         </authentication-provider>

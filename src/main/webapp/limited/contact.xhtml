@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite">
+   <h:head>
+      <title>Facelet Title</title>
+   </h:head>
+   <h:body>
+      <ui:composition template="/template/layout.xhtml">
+         <ui:define name="content">
+            Cadastro de Contatos
+
+            <h:form id="frmBtnComposites" class="item pull-right">
+
+               <div class="item">
+                  <p:commandLink action="#{contactMB.newAddress}"
+                                 class="link"
+                                 oncomplete="$('#modalEndereco').modal('show');"
+                                 update=":cmpEndereco:frmAddEndereco">
+                     <span class="icon-home icon-label"></span>
+                     Adicionar Endereço
+                  </p:commandLink>
+               </div>
+
+               <div class="item">
+                  <p:commandLink action="#{contactMB.newPhone}"
+                                 class="link"
+                                 oncomplete="$('#modalContato').modal('show');"
+                                 update=":cmpContato:frmAddContato">
+                     <span class="icon-phone icon-label"></span>
+                     Adicionar Contato
+                  </p:commandLink>
+               </div>  
+
+               <div class="item">
+                  <p:commandLink action="#{contactMB.newEmail}"
+                                 class="link"
+                                 oncomplete="$('#modalEmail').modal('show');"
+                                 update=":cmpContato:frmAddContato">
+                     <span class="icon-at icon-label"></span>
+                     Adicionar E-mail
+                  </p:commandLink>
+               </div>
+
+               <div class="item">
+                  <p:commandLink action="#{contactMB.novoDocumento}"
+                                 class="link" 
+                                 oncomplete="$('#modalDocumento').modal('show');"
+                                 update=":cmpDocumento:frmAddDocumento">
+                     <span class="icon-file-o icon-label"></span>
+                     Adicionar Documentos
+                  </p:commandLink>
+               </div>
+
+            </h:form>
+
+            <composite:phone id="cmpPhone"
+                             code="#{contactMB.phone.id}"
+                             type="#{contactMB.phone.tipo}"
+                             codArea="#{contactMB.phone.codArea}"
+                             number="#{contactMB.phone.numero}"
+                             observation="#{contactMB.phone.observacao}"
+                             btnAddText="Adicionar"
+                             btnAddAction="#{contactMB.addPhone}">
+            </composite:phone>
+
+            <composite:address id="cmpAddress"
+                               code="#{contactMB.address.id}"
+                               typeAddress="#{contactMB.address.typeAddress}" 
+                               typeStreet="#{contactMB.address.typeStreet}"
+                               street="#{contactMB.address.street}"
+                               number="#{contactMB.address.number}" 
+                               neighbourhood="#{contactMB.address.neighbourhood}"
+                               zipCode="#{contactMB.address.zipCode}"
+                               state="#{contactMB.address.state}"
+                               city="#{contactMB.address.city}"
+                               btnAddText="Adicionar"
+                               btnAddAction="#{contactMB.addAddress}">
+            </composite:address> 
+
+            <composite:email id="cmpEmail"
+                             code="#{contactMB.email.id}"
+                             type="#{contactMB.email.type}"
+                             email="#{contactMB.email.email}"
+                             btnAddText="Adicionar"
+                             btnAddAction="#{contactMB.addEmail}">
+            </composite:email>
+
+         </ui:define>
+      </ui:composition>
+
+   </h:body>
+</html>
+
