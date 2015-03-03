@@ -4,7 +4,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite">
+      xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
    <h:head>
       <title>Facelet Title</title>
    </h:head>
@@ -18,8 +19,8 @@
                <div class="item">
                   <p:commandLink action="#{contactMB.newAddress}"
                                  class="link"
-                                 oncomplete="$('#modalEndereco').modal('show');"
-                                 update=":cmpEndereco:frmAddEndereco">
+                                 oncomplete="$('#modalAddress').modal('show');"
+                                 update=":cmpAddress:frmAddAddress">
                      <span class="icon-home icon-label"></span>
                      Adicionar Endereço
                   </p:commandLink>
@@ -28,8 +29,8 @@
                <div class="item">
                   <p:commandLink action="#{contactMB.newPhone}"
                                  class="link"
-                                 oncomplete="$('#modalContato').modal('show');"
-                                 update=":cmpContato:frmAddContato">
+                                 oncomplete="$('#modalPhone').modal('show');"
+                                 update=":cmpPhone:frmAddPhone">
                      <span class="icon-phone icon-label"></span>
                      Adicionar Contato
                   </p:commandLink>
@@ -39,23 +40,141 @@
                   <p:commandLink action="#{contactMB.newEmail}"
                                  class="link"
                                  oncomplete="$('#modalEmail').modal('show');"
-                                 update=":cmpContato:frmAddContato">
+                                 update=":cmpEmail:frmAddEmail">
                      <span class="icon-at icon-label"></span>
                      Adicionar E-mail
                   </p:commandLink>
                </div>
 
-               <div class="item">
-                  <p:commandLink action="#{contactMB.novoDocumento}"
-                                 class="link" 
-                                 oncomplete="$('#modalDocumento').modal('show');"
-                                 update=":cmpDocumento:frmAddDocumento">
-                     <span class="icon-file-o icon-label"></span>
-                     Adicionar Documentos
-                  </p:commandLink>
-               </div>
-
             </h:form>
+
+            <div class="row">
+               <!--    ////////////////////////////// LISTAGEM DOS CONTATOS TELEFONICOS  //////////////////////////   -->
+               <div class="col-sm-3">
+
+                  <h:panelGrid id="pnlPhones">
+                     <h:dataTable id="tblPhones"
+                                  class="table table-bordered table-striped table-hover"
+                                  var="phone" 
+                                  value="#{contactMB.listPhones}"
+                                  rendered="#{!empty contactMB.listPhones}">  
+                        <h:inputHidden value="#{phone.id}"></h:inputHidden>
+
+                        <f:facet name="header">
+                           Contatos Telefônicos
+                        </f:facet>
+
+                        <h:column>
+                           <h:outputText value="#{phone.tipo}"></h:outputText>
+                        </h:column>
+
+                        <h:column>
+                           <h:outputText value="(#{phone.codArea}) #{phone.numero}"></h:outputText>
+                        </h:column>
+
+                        <h:column>
+                           <p:commandLink id="btnEditPhone" 
+                                          update=":cmpPhone:frmAddPhone"
+                                          oncomplete="$('#modalPhone').modal('show');"
+                                          title="Editar"
+                                          immediate="true">
+                              <span class="icon-edit"></span>
+                              <f:setPropertyActionListener target="#{contactMB.phone}" value="#{phone}"/>
+                           </p:commandLink>
+                        </h:column>
+
+                        <h:column>
+                           <h:commandLink title="Excluir" 
+                                          action="#{contactMB.removePhone}">
+                              <f:ajax execute="@this" render=":frmCadastro:pnlPhones"/>
+                              <span class="icon-minus-square"></span>
+                              <f:setPropertyActionListener target="#{contactMB.phone}" value="#{phone}"/>
+                           </h:commandLink>
+                        </h:column>
+
+                     </h:dataTable>
+                  </h:panelGrid>
+
+               </div>
+               <!--    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   -->
+               <!--    /////////////////////////////////// LISTAGEM DOS ENDERECOS ADICIONADOS //////////////////////////   -->
+               <div class="col-sm-3">
+                  <h:panelGrid id="pnlAddress">
+                     <h:dataTable id="tblAddress"
+                                  class="table table-bordered table-striped table-hover"
+                                  var="address" 
+                                  value="#{contactMB.address}"
+                                  rendered="#{!empty contactMB.address}"> 
+                        <h:inputHidden value="#{address.id}"/>
+                        <f:facet name="header">
+                           Endereço
+                        </f:facet>
+                        <h:column>
+                           <h:outputText value="#{address.tipoAddress}"/>
+                        </h:column>
+                        <h:column>
+                           <h:outputText value="#{address.logradouro}, Nº #{address.numero} "/>
+                        </h:column>
+                        <h:column>
+                           <p:commandLink immediate="true"
+                                          oncomplete="$('#modalAddress').modal('show');"
+                                          update=":cmpAddress:frmAddAddress">
+                              <span class="icon-edit"></span>
+                              <f:setPropertyActionListener target="#{contactMB.address}" value="#{address}"/>
+                           </p:commandLink>
+                        </h:column>
+                        <h:column>
+                           <h:commandLink title="Excluir" 
+                                          action="#{contactMB.removeAddress}">
+                              <f:ajax execute="@this" render=":frmCadastro:pnlAddress"/>
+                              <span class="icon-minus-square"></span>
+                              <f:setPropertyActionListener target="#{contactMB.address}" value="#{address}"/>
+                           </h:commandLink>
+                        </h:column>
+                     </h:dataTable>
+                  </h:panelGrid>
+               </div>
+               <!--    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   -->
+               <!--    ////////////////////////////// LISTAGEM DOS EMAILS ADICIONADOS //////////////////////////   -->
+               <div class="col-sm-3">
+                  <h:panelGrid id="pnlEmails">
+                     <h:dataTable id="tblEmails"
+                                  class="table table-bordered table-striped table-hover"
+                                  var="email" 
+                                  value="#{contactMB.emails}"
+                                  rendered="#{!empty contactMB.emails}">  
+                        <h:inputHidden value="#{email.id}"/>
+                        <f:facet name="header">
+                           E-mail
+                        </f:facet>
+                        <h:column>
+                           <h:outputText value="#{email.tipo}"/>
+                        </h:column>
+                        <h:column>
+                           <h:outputText value="#{email.email}"/>
+                        </h:column>
+                        <h:column>
+                           <p:commandLink immediate="true"
+                                          oncomplete="$('#modalEmail').modal('show');" 
+                                          title="Editar" 
+                                          update=":cmpEmail:frmAddEmail">
+                              <span class="icon-edit"></span>
+                              <f:setPropertyActionListener target="#{contactMB.email}" value="#{email}" />
+                           </p:commandLink>
+                        </h:column>
+                        <h:column>
+                           <h:commandLink title="Excluir" 
+                                          action="#{contactMB.removeEmail}">
+                              <f:ajax execute="@this" render=":frmCadastro:pnlEmails"/>
+                              <span class="icon-minus-square"></span>
+                              <f:setPropertyActionListener target="#{contactMB.email}" value="#{email}"/>
+                           </h:commandLink>
+                        </h:column>
+                     </h:dataTable>
+                  </h:panelGrid>
+               </div>
+               <!--    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   -->
+            </div>
 
             <composite:phone id="cmpPhone"
                              code="#{contactMB.phone.id}"
