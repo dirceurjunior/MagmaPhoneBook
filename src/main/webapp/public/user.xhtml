@@ -5,61 +5,61 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <h:head>
-      <title>Facelet Title</title>
-   </h:head>
-   <h:body>
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
 
-      <ui:composition template="/template/layout.xhtml">
-         <ui:define name="content">
-            Cadastrar Usuário
-            <h:form>
-               <h:messages/>
-               <h:inputText id="nome" 
-                            class="field-control"
-                            required="true"
-                            requiredMessage="Nome Obrigatório"
-                            pt:placeholder="Nome do Paciente"
-                            onkeyup="this.value = this.value.toUpperCase();"
-                            value="#{usuarioMB.usuario.nome}" >
-               </h:inputText> 
-               <br/>
-               <h:inputText id="cpf" 
-                            class="field-control"
-                            required="true"
-                            requiredMessage="CPF Obrigatório"
-                            pt:placeholder="CPF"
-                            value="#{usuarioMB.usuario.cpf}">
-                  <f:converter converterId="cpfConverter"/>
-                  <f:validator validatorId="cpfValidator"/>
-               </h:inputText>
-               <br/>
-               <h:inputText id="login" 
-                            class="field-control"
-                            required="true"
-                            requiredMessage="Login Obrigatório"
-                            pt:placeholder="Login"
-                            value="#{usuarioMB.usuario.login}" >
-               </h:inputText>
-               <br/>
-               <h:inputSecret id="senha" 
-                              class="field-control"
-                              required="true"
-                              requiredMessage="Senha Obrigatório"
-                              pt:placeholder="Senha"
-                              value="#{usuarioMB.usuario.senha}" >
-               </h:inputSecret>
-               <br/>
-               <h:commandLink value="Salvar / Alterar" 
-                              class="btn btn-default"
-                              action="#{usuarioMB.inserir}">
-               </h:commandLink>
-            </h:form>
-         </ui:define>
-         <ui:define name="footer">
-         </ui:define>
-      </ui:composition>
+        <ui:composition template="/template/layout.xhtml">
+            <ui:define name="content">
+                Cadastrar Usuário
+                <h:form>
+                    <h:messages/>
+                    <h:inputText id="name" 
+                                 class="field-control"
+                                 required="true"
+                                 requiredMessage="Nome Obrigatório"
+                                 pt:placeholder="Nome do Usuário"
+                                 onkeyup="this.value = this.value.toUpperCase();"
+                                 value="#{usersMB.users.name}" >
+                    </h:inputText> 
+                    <br/>
+                    <h:inputText id="cpf" 
+                                 class="field-control"
+                                 required="true"
+                                 requiredMessage="CPF Obrigatório"
+                                 pt:placeholder="CPF"
+                                 value="#{usuarioMB.usuario.cpf}">
+                        <f:converter converterId="cpfConverter"/>
+                        <f:validator validatorId="cpfValidator"/>
+                    </h:inputText>
+                    <br/>
+                    <h:inputText id="login" 
+                                 class="field-control"
+                                 required="true"
+                                 requiredMessage="Login Obrigatório"
+                                 pt:placeholder="Login"
+                                 value="#{usuarioMB.usuario.login}" >
+                    </h:inputText>
+                    <br/>
+                    <h:inputSecret id="senha" 
+                                   class="field-control"
+                                   required="true"
+                                   requiredMessage="Senha Obrigatório"
+                                   pt:placeholder="Senha"
+                                   value="#{usuarioMB.usuario.senha}" >
+                    </h:inputSecret>
+                    <br/>
+                    <h:commandLink value="Salvar / Alterar" 
+                                   class="btn btn-default"
+                                   action="#{usuarioMB.inserir}">
+                    </h:commandLink>
+                </h:form>
+            </ui:define>
+            <ui:define name="footer">
+            </ui:define>
+        </ui:composition>
 
-   </h:body>
+    </h:body>
 </html>
 

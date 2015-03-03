@@ -20,9 +20,9 @@ import com.magmaphonebook.model.users.UsersDAOHibernate;
 public class DAOFactory {
 
    public static UsersDAO createUserDAO() {
-      UsersDAOHibernate userDAO = new UsersDAOHibernate();
-      userDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
-      return userDAO;
+      UsersDAOHibernate usersDAO = new UsersDAOHibernate();
+      usersDAO.setSession(HibernateUtil.getSessionFactory().getCurrentSession());
+      return usersDAO;
    }
 
    public static ContactDAO createContactDAO() {

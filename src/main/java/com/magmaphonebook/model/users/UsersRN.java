@@ -5,39 +5,51 @@ import java.util.List;
 
 public class UsersRN {
 
-   private UsersDAO userDAO;
+   private final UsersDAO usersDAO;
 
    public UsersRN() {
-      this.userDAO = DAOFactory.createUserDAO();
+      this.usersDAO = DAOFactory.createUserDAO();
    }
 
-   public Users carregar(Integer id) {
-      return this.userDAO.load(id);
+   public Users load(Integer id) {
+      return this.usersDAO.load(id);
    }
 
-   public Users buscarPorLogin(String login) {
-      return this.userDAO.findByLogin(login);
+   public Users findByLogin(String login) {
+      return this.usersDAO.findByLogin(login);
    }
 
-   public void salvar(Users user) {
+   public void save(Users user) {
 
       Integer id = user.getId();
       if (id == null || id == 0) {
 
          //user.getPermissao().add("ROLE_USUARIO");
-         this.userDAO.save(user);
+         this.usersDAO.save(user);
 
       } else {
-         this.userDAO.update(user);
+         this.usersDAO.update(user);
       }
    }
 
-   public void excluir(Users user) {
-      this.userDAO.delete(user);
+   public void delete(Users user) {
+      this.usersDAO.delete(user);
    }
 
-   public List<Users> listar() {
-      return this.userDAO.list();
+   public List<Users> list() {
+      return this.usersDAO.list();
    }
+
+    public void update(Users users) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Users findByName(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Users findByCPF(String cpf) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
