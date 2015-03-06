@@ -15,23 +15,15 @@
                     </div>
                 </h:panelGroup>
                 <form id="login" method="post" action="${request.contextPath}/j_spring_security_check">
-                    <div class="block">
-                        <input class="field" type='text' name='j_username' placeholder="Usuário" />
-                    </div>
-                    <div class="block">
-                        <input class="field" type='password' name='j_password' placeholder="Senha" />
-                    </div>
-                    <div class="block">
-                        <button class="field" type="submit">Acessar</button>
-                    </div>
+                    <input type='text' name='j_username' placeholder="Usuário" />
+                    <input type='password' name='j_password' placeholder="Senha" />
+                    <button type="submit">Acessar</button>
                     <script>
                         document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}";
                     </script>
                 </form>
                 <h:form>
-                    <div class="block">
-                        <h:commandLink class="block" action="user" value="Cadastre-se"/>
-                    </div>  
+                    <h:commandLink action="user" value="Cadastre-se"/>
                 </h:form> 
             </ui:define>
         </ui:composition>

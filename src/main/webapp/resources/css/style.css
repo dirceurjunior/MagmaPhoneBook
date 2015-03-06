@@ -9,7 +9,7 @@ and open the template in the editor.
 */
 
 body {
-/*    background-image: url("#{resource['img:background.jpg']}");*/
+    /*    background-image: url("#{resource['img:background.jpg']}");*/
 }
 .block {
     display: -moz-box;
@@ -27,20 +27,20 @@ body {
     border-radius: 3px;
     font-size: 1.25em;
     width: 16em;
-    color: #ffffff;
+    color: #000000;
 }
 
 .field[type="text"],
 .field[type="password"] {
-/*    background-color: yellow;*/
+    /*    background-color: yellow;*/
 }
 
 .field[type="password"] {
-/*    background-color: blue;*/
+    /*    background-color: blue;*/
 }
 
 .field[type="text"] {
-/*    background-color: green;*/
+    /*    background-color: green;*/
 }
 
 button.field {
