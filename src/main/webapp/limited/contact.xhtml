@@ -5,6 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:composite="http://xmlns.jcp.org/jsf/composite/composite"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
@@ -14,16 +15,21 @@
             <ui:define name="content">
                 Cadastro de Contatos
 
-                <!--                <h:form>
-                                    <p:commandLink action="# {contactMB.newContact}"
-                                                   class="link pull-left font-g444 hover-font-clear"
-                                                   oncomplete="$('#modalPesquisar').modal('show');"
-                                                   update=":frmCadastro :frmNomePesquisa :frmListagem">
-                                        <span class="icon-search icon-label"></span>
-                                    </p:commandLink>
-                                </h:form>-->
-
                 <h:form id="frmBtnComposites">
+
+                    <p:commandLink action="#{contactMB.newPhone}"
+                                   class="link"
+                                   oncomplete="$('#modalPhone').modal('show');"
+                                   update=":cmpPhone:frmAddPhone">
+                        Adicionar Contato
+                    </p:commandLink>
+
+                    <p:commandLink action="#{contactMB.newEmail}"
+                                   class="link"
+                                   oncomplete="$('#modalEmail').modal('show');"
+                                   update=":cmpEmail:frmAddEmail">
+                        Adicionar E-mail
+                    </p:commandLink>
 
                     <p:commandLink action="#{contactMB.newAddress}"
                                    oncomplete="$('#modalAddress').modal('show');"
@@ -31,26 +37,20 @@
                         Adicionar Endereço
                     </p:commandLink>
 
-                    <p:commandLink action="# {contactMB.newPhone}"
-                                   class="link"
-                                   oncomplete="$('#modalPhone').modal('show');"
-                                   update=":cmpPhone:frmAddPhone">
-                        Adicionar Contato
-                    </p:commandLink>
-
-                    <p:commandLink action="# {contactMB.newEmail}"
-                                   class="link"
-                                   oncomplete="$('#modalEmail').modal('show');"
-                                   update=":cmpEmail:frmAddEmail">
-                        Adicionar E-mail
-                    </p:commandLink>
-
                 </h:form>
 
                 <h:form id="frmCadastro" prependId="false" class="form form-horizontal">
 
+                    <h:inputHidden value="#{contactMB.contact.id}"/>
 
-                    <!--    ////////////////////////////// LISTAGEM DOS CONTATOS TELEFONICOS  //////////////////////////   -->
+                    <h:outputLabel for="nome">Nome</h:outputLabel>
+                    <h:inputText id="nome" 
+                                 required="true"
+                                 requiredMessage="Nome Obrigatório"
+                                 pt:placeholder="Nome"
+                                 onkeyup="this.value = this.value.toUpperCase();"
+                                 value="#{contactMB.contact.name}" >
+                    </h:inputText>
 
                     <h:panelGrid id="pnlPhones">
                         <h:dataTable id="tblPhones"
@@ -58,19 +58,15 @@
                                      value="#{contactMB.listPhones}"
                                      rendered="#{!empty contactMB.listPhones}">  
                             <h:inputHidden value="#{phone.id}"></h:inputHidden>
-
                             <f:facet name="header">
                                 Contatos Telefônicos
                             </f:facet>
-
                             <h:column>
                                 <h:outputText value="#{phone.tipo}"></h:outputText>
                             </h:column>
-
                             <h:column>
                                 <h:outputText value="(#{phone.codArea}) #{phone.numero}"></h:outputText>
                             </h:column>
-
                             <h:column>
                                 <p:commandLink id="btnEditPhone" 
                                                update=":cmpPhone:frmAddPhone"
@@ -80,7 +76,6 @@
                                     <f:setPropertyActionListener target="#{contactMB.phone}" value="#{phone}"/>
                                 </p:commandLink>
                             </h:column>
-
                             <h:column>
                                 <h:commandLink title="Excluir" 
                                                action="#{contactMB.removePhone}">
@@ -88,12 +83,9 @@
                                     <f:setPropertyActionListener target="#{contactMB.phone}" value="#{phone}"/>
                                 </h:commandLink>
                             </h:column>
-
                         </h:dataTable>
                     </h:panelGrid>
 
-                    <!--    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   -->
-                    <!--    /////////////////////////////////// LISTAGEM DOS ENDERECOS ADICIONADOS //////////////////////////   -->
                     <h:panelGrid id="pnlAddress">
                         <h:dataTable id="tblAddress"
                                      var="address" 
@@ -125,8 +117,7 @@
                             </h:column>
                         </h:dataTable>
                     </h:panelGrid>
-                    <!--    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   -->
-                    <!--    ////////////////////////////// LISTAGEM DOS EMAILS ADICIONADOS //////////////////////////   -->
+
                     <h:panelGrid id="pnlEmails">
                         <h:dataTable id="tblEmails"
                                      var="email" 
@@ -153,16 +144,15 @@
                             <h:column>
                                 <h:commandLink title="Excluir" 
                                                action="#{contactMB.removeEmail}">
+                                    Remover
                                     <f:ajax execute="@this" render=":frmCadastro:pnlEmails"/>
                                     <f:setPropertyActionListener target="#{contactMB.email}" value="#{email}"/>
                                 </h:commandLink>
                             </h:column>
                         </h:dataTable>
                     </h:panelGrid>
-                    <!--    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   -->
+
                 </h:form>
-
-
 
                 <composite:phone id="cmpPhone"
                                  code="#{contactMB.phone.id}"
@@ -195,85 +185,6 @@
                                  btnAddText="Adicionar"
                                  btnAddAction="#{contactMB.addEmail}">
                 </composite:email>
-
-                <!--                <div class="modal fade" id="modalPesquisar" tabindex="-1" role="dialog" aria-labelledby="modalPesquisarLabel" aria-hidden="true">
-                
-                                    <div class="modal-dialog modal-lg">
-                
-                                        <div class="modal-content">
-                
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">
-                                                    <span aria-hidden="true">&times;</span>
-                                                    <span class="sr-only">Fechar</span>
-                                                </button>
-                                                <h4 class="modal-title" id="modalPesquisarLabel">Pesquisar Pacientes</h4>
-                                            </div> /.modal-header 
-                
-                                            <div class="modal-body">
-                
-                                                <h:form id="frmNomePesquisa">
-                                                    <p:focus context="frmNomePesquisa"></p:focus>
-                
-                                                    <h:inputText id="nome" 
-                                                                 onkeyup="this.value = this.value.toUpperCase();"
-                                                                 pt:placeholder="Nome do Contato"
-                                                                 styleClass="field-control"
-                                                                 value="# {contactMB.contact.nome}">
-                                                        <f:ajax event="keyup" render=":frmListagem"></f:ajax>
-                                                    </h:inputText>
-                
-                                                </h:form>
-                
-                                                <h:form id="frmListagem">
-                                                    <div>
-                                                        <h:dataTable id="tblUsers"
-                                                                     class="table table-bordered table-striped table-hover"
-                                                                     var="c"
-                                                                     styleClass="table"
-                                                                     rendered="# {!empty contactMB.listByName}"
-                                                                     value="# {contactMB.listByName}">
-                
-                                                            <h:inputHidden value="# {c.id}"></h:inputHidden>
-                
-                                                            <h:column>
-                                                                <f:facet name="header">
-                                                                    <h:outputText value="Nome"></h:outputText>
-                                                                </f:facet>
-                                                                <h:outputText value="# {c.nome}"></h:outputText>
-                                                            </h:column>
-                
-                                                            <h:column>
-                                                                <f:facet name="header">
-                                                                    <h:outputText value="Editar"></h:outputText>
-                                                                </f:facet>
-                                                                <h:commandLink title="Editar" action="# {contactMB.editar}">
-                                                                    <center>
-                                                                        <span class="icon-edit"></span>
-                                                                    </center>
-                                                                    <f:setPropertyActionListener target="# {contactMB.contact}" value="# {c}"></f:setPropertyActionListener>
-                                                                </h:commandLink>
-                                                            </h:column>
-                
-                                                        </h:dataTable>
-                
-                                                    </div>
-                
-                                                </h:form>
-                
-                                            </div> /.modal-body 
-                
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                            </div> /.modal-footer 
-                
-                                        </div> /.modal-content 
-                
-                                    </div> /.modal-dialog 
-                
-                                </div> /.modal -->
-
-
 
             </ui:define>
 
