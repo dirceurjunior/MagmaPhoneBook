@@ -41,40 +41,22 @@ public class Contact implements Serializable {
    private Integer id;
 
    @Column(length = 50)
-   private String nome;
+   private String name;
 
    private String cpf;
 
    @Temporal(javax.persistence.TemporalType.DATE)
-   private Date dataNascimento;
+   private Date dateBirth;
 
    @Temporal(javax.persistence.TemporalType.DATE)
-   private Date dataCadastro;
+   private Date dateRegistration;
 
-   private String sexo;
-
-   private String estadoCivil;
-
-   private String etnia;
-
-   private String profissao;
-
-   private String prontuario;
-
-   private String matricula;
-
-   private String religiao;
-
-   private String indicacao;
-
-   private String nacionalidade;
-
-   private String naturalidade;
+   private String gender;
 
    @Column(length = 250)
-   private String observacoes;
+   private String note;
 
-   private Integer ativo;
+   private Integer active;
 
    //////////////////////////////////////// MAPEAMENTO COM ENDEREÇOS
    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -107,12 +89,12 @@ public class Contact implements Serializable {
       this.id = id;
    }
 
-   public String getNome() {
-      return nome;
+   public String getName() {
+      return name;
    }
 
-   public void setNome(String nome) {
-      this.nome = nome;
+   public void setName(String name) {
+      this.name = name;
    }
 
    public String getCpf() {
@@ -123,116 +105,44 @@ public class Contact implements Serializable {
       this.cpf = cpf;
    }
 
-   public Date getDataNascimento() {
-      return dataNascimento;
+   public Date getDateBirth() {
+      return dateBirth;
    }
 
-   public void setDataNascimento(Date dataNascimento) {
-      this.dataNascimento = dataNascimento;
+   public void setDateBirth(Date dateBirth) {
+      this.dateBirth = dateBirth;
    }
 
-   public Date getDataCadastro() {
-      return dataCadastro;
+   public Date getDateRegistration() {
+      return dateRegistration;
    }
 
-   public void setDataCadastro(Date dataCadastro) {
-      this.dataCadastro = dataCadastro;
+   public void setDateRegistration(Date dateRegistration) {
+      this.dateRegistration = dateRegistration;
    }
 
-   public String getSexo() {
-      return sexo;
+   public String getGender() {
+      return gender;
    }
 
-   public void setSexo(String sexo) {
-      this.sexo = sexo;
+   public void setGender(String gender) {
+      this.gender = gender;
    }
 
-   public String getEstadoCivil() {
-      return estadoCivil;
+   public String getNote() {
+      return note;
    }
 
-   public void setEstadoCivil(String estadoCivil) {
-      this.estadoCivil = estadoCivil;
+   public void setNote(String note) {
+      this.note = note;
    }
 
-   public String getEtnia() {
-      return etnia;
+   public Integer getActive() {
+      return active;
    }
 
-   public void setEtnia(String etnia) {
-      this.etnia = etnia;
-   }
-
-   public String getProfissao() {
-      return profissao;
-   }
-
-   public void setProfissao(String profissao) {
-      this.profissao = profissao;
-   }
-
-   public String getProntuario() {
-      return prontuario;
-   }
-
-   public void setProntuario(String prontuario) {
-      this.prontuario = prontuario;
-   }
-
-   public String getMatricula() {
-      return matricula;
-   }
-
-   public void setMatricula(String matricula) {
-      this.matricula = matricula;
-   }
-
-   public String getReligiao() {
-      return religiao;
-   }
-
-   public void setReligiao(String religiao) {
-      this.religiao = religiao;
-   }
-
-   public String getIndicacao() {
-      return indicacao;
-   }
-
-   public void setIndicacao(String indicacao) {
-      this.indicacao = indicacao;
-   }
-
-   public String getNacionalidade() {
-      return nacionalidade;
-   }
-
-   public void setNacionalidade(String nacionalidade) {
-      this.nacionalidade = nacionalidade;
-   }
-
-   public String getNaturalidade() {
-      return naturalidade;
-   }
-
-   public void setNaturalidade(String naturalidade) {
-      this.naturalidade = naturalidade;
-   }
-
-   public String getObservacoes() {
-      return observacoes;
-   }
-
-   public void setObservacoes(String observacoes) {
-      this.observacoes = observacoes;
-   }
-
-   public Integer getAtivo() {
-      return ativo;
-   }
-
-   public void setAtivo(Integer ativo) {
-      this.ativo = ativo;
+   public void setActive(Integer active) {
+      this.active = active;
    }
 
    public List<Address> getAddress() {
@@ -258,5 +168,7 @@ public class Contact implements Serializable {
    public void setEmails(List<Email> emails) {
       this.emails = emails;
    }
+   
+   
 
 }
