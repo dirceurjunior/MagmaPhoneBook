@@ -28,12 +28,12 @@
                      <h4 class="modal-title" id="modalEmailLabel">Adicionar E-mail</h4>
                   </div><!-- /.modal-header -->
                   <div class="modal-body">
-                     <h:inputHidden value="#{cc.attrs.code}"/>
-                     <div class="field-group pw15 ph05">
-                        <h:outputLabel class="col-sm-3 label-control">Tipo</h:outputLabel>
-                        <div class="col-sm-9">
+                     <div class="row">
+                        <div class="col-md-8">
+                           <h:inputHidden value="#{cc.attrs.code}"/>
+                           <h:outputLabel>Tipo</h:outputLabel>
                            <h:selectOneMenu id="type"
-                                            class="field-control"
+                                            class="form-control"
                                             required="true"
                                             requiredMessage="Tipo de E-mail Obrigatório"
                                             value="#{cc.attrs.type}">
@@ -41,14 +41,9 @@
                               <f:selectItem itemValue="Particular" itemLabel="Particular"></f:selectItem>
                               <f:selectItem itemValue="Comercial" itemLabel="Comercial"></f:selectItem>
                            </h:selectOneMenu>
-                        </div>
-                     </div>
-
-                     <div class="field-group pw15 ph05">
-                        <h:outputLabel class="col-sm-3 label-control">E-mail</h:outputLabel>
-                        <div class="col-sm-9">
+                           <h:outputLabel>E-mail</h:outputLabel>
                            <h:inputText id="email" 
-                                        class="field-control"
+                                        class="form-control"
                                         required="true"
                                         requiredMessage="Email Obrigatório"
                                         pt:placeholder="E-mail"
@@ -58,16 +53,15 @@
                            </h:inputText>
                         </div>
                      </div>
-                     <h:inputText class="hidden"></h:inputText>
                   </div><!-- /.modal-body -->
                   <div class="modal-footer">
-                     <p:commandLink styleClass="btn btn-success" 
+                     <p:commandLink styleClass="btn btn-primary" 
                                     action="#{cc.attrs.btnAddAction}"
                                     value="#{cc.attrs.btnAddText}"
                                     oncomplete="$('#modalEmail').modal('hide');"
                                     update=":frmCadastro:pnlEmails">
                      </p:commandLink>
-                     <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                   </div><!-- /.modal-footer -->
                </h:form>
             </div><!-- /.modal-content -->

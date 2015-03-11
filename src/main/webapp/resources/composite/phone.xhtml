@@ -39,71 +39,55 @@
 
                      <h:inputHidden value="#{cc.attrs.code}"></h:inputHidden>
 
-                     <div class="field-group pw15 ph05">
-                        <h:outputLabel class="col-sm-3 label-control" for="tipo">Tipo</h:outputLabel>
-                        <div class="col-sm-9">
-                           <h:selectOneMenu id="type" 
-                                            class="field-control"
-                                            required="true" 
-                                            requiredMessage="Tipo Obrigatório" 
-                                            value="#{cc.attrs.type}"
-                                            valueChangeListener="#{utilMB.selecionaTipo}">
+                     <h:outputLabel for="tipo">Tipo</h:outputLabel>
+                     <h:selectOneMenu id="type" 
+                                      class="field-control"
+                                      required="true" 
+                                      requiredMessage="Tipo Obrigatório" 
+                                      value="#{cc.attrs.type}"
+                                      valueChangeListener="#{utilMB.selecionaTipo}">
+                        <f:selectItem itemLabel="Escolha o tipo" itemDisabled="true"></f:selectItem>
+                        <f:selectItem itemValue="RESIDENCIAL" itemLabel="Residencial"></f:selectItem>
+                        <f:selectItem itemValue="CELULAR" itemLabel="Celular"></f:selectItem>
+                        <f:selectItem itemValue="COMERCIAL" itemLabel="Comercial"></f:selectItem>
+                        <f:selectItem itemValue="FAX" itemLabel="Fax"></f:selectItem>
+                        <f:ajax event="change" render="nro observacao number"></f:ajax>
+                     </h:selectOneMenu>
 
-                              <f:selectItem itemLabel="Escolha o tipo" itemDisabled="true"></f:selectItem>
-                              <f:selectItem itemValue="RESIDENCIAL" itemLabel="Residencial"></f:selectItem>
-                              <f:selectItem itemValue="CELULAR" itemLabel="Celular"></f:selectItem>
-                              <f:selectItem itemValue="COMERCIAL" itemLabel="Comercial"></f:selectItem>
-                              <f:selectItem itemValue="FAX" itemLabel="Fax"></f:selectItem>
-                              <f:ajax event="change" render="nro observacao number"></f:ajax>
+                     <h:outputLabel for="number">Número</h:outputLabel>
 
-                           </h:selectOneMenu>
-                        </div>
-                     </div>
+                     <p:outputPanel id="a">  
+                        <p:inputMask id="codArea"
+                                     class="field-control"
+                                     mask="99"
+                                     pt:placeholder="DDD"
+                                     required="true"
+                                     requiredMessage="Código de Área Obrigatório"
+                                     value="#{cc.attrs.codArea}">
+                           <f:ajax event="keyup" listener="#{utilMB.maskContato(cc.attrs.codArea)}" render="nro"></f:ajax>
+                        </p:inputMask>
+                     </p:outputPanel>
 
-                     <div class="field-group ph05">
+                     <p:outputPanel id="nro">  
+                        <p:inputMask id="number"
+                                     class="field-control"
+                                     mask="#{utilMB.maskNroContato}"
+                                     pt:placeholder="Número"
+                                     required="true"
+                                     requiredMessage="Número do Contato Obrigatório"
+                                     value="#{cc.attrs.number}">
+                        </p:inputMask>
+                     </p:outputPanel>
 
-                        <h:outputLabel class="col-sm-3 pw15 label-control" for="number">Número</h:outputLabel>
 
-                        <div class="col-sm-2 pw15">
-                           <p:outputPanel id="a">  
-                              <p:inputMask id="codArea"
-                                           class="field-control"
-                                           mask="99"
-                                           pt:placeholder="DDD"
-                                           required="true"
-                                           requiredMessage="Código de Área Obrigatório"
-                                           value="#{cc.attrs.codArea}">
-                                 <f:ajax event="keyup" listener="#{utilMB.maskContato(cc.attrs.codArea)}" render="nro"></f:ajax>
-                              </p:inputMask>
-                           </p:outputPanel>
-                        </div>
 
-                        <div class="col-sm-6">
-                           <p:outputPanel id="nro">  
-                              <p:inputMask id="number"
-                                           class="field-control"
-                                           mask="#{utilMB.maskNroContato}"
-                                           pt:placeholder="Número"
-                                           required="true"
-                                           requiredMessage="Número do Contato Obrigatório"
-                                           value="#{cc.attrs.number}">
-                              </p:inputMask>
-                           </p:outputPanel>
-                        </div>
-
-                     </div>
-
-                     <div class="field-group pw15 ph05">
-                        <h:outputLabel class="col-sm-3 pw15 label-control" for="observacao">Observação</h:outputLabel>
-                        <div class="col-sm-9">
-                           <h:inputText id="observation" 
-                                        class="field-control"
-                                        pt:placeholder="Tem alguma observação?"
-                                        onkeyup="this.value = this.value.toUpperCase();"
-                                        value="#{cc.attrs.observation}">
-                           </h:inputText>
-                        </div>
-                     </div>
+                     <h:outputLabel for="observacao">Observação</h:outputLabel>
+                     <h:inputText id="observation" 
+                                  class="field-control"
+                                  pt:placeholder="Tem alguma observação?"
+                                  onkeyup="this.value = this.value.toUpperCase();"
+                                  value="#{cc.attrs.observation}">
+                     </h:inputText>
 
                   </div><!-- /.modal-body -->
 

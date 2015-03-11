@@ -46,9 +46,6 @@ public class Contact implements Serializable {
    private String cpf;
 
    @Temporal(javax.persistence.TemporalType.DATE)
-   private Date dateBirth;
-
-   @Temporal(javax.persistence.TemporalType.DATE)
    private Date dateRegistration;
 
    private String gender;
@@ -103,14 +100,6 @@ public class Contact implements Serializable {
 
    public void setCpf(String cpf) {
       this.cpf = cpf;
-   }
-
-   public Date getDateBirth() {
-      return dateBirth;
-   }
-
-   public void setDateBirth(Date dateBirth) {
-      this.dateBirth = dateBirth;
    }
 
    public Date getDateRegistration() {

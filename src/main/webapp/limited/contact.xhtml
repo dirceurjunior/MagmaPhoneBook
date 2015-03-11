@@ -16,27 +16,23 @@
             Cadastro de Contatos
 
             <h:form id="frmBtnComposites">
-
                <p:commandLink action="#{contactMB.newPhone}"
                               class="link"
                               oncomplete="$('#modalPhone').modal('show');"
                               update=":cmpPhone:frmAddPhone">
-                  Adicionar Contato
+                  Adicionar Telefone
                </p:commandLink>
-
                <p:commandLink action="#{contactMB.newEmail}"
                               class="link"
                               oncomplete="$('#modalEmail').modal('show');"
                               update=":cmpEmail:frmAddEmail">
                   Adicionar E-mail
                </p:commandLink>
-
                <p:commandLink action="#{contactMB.newAddress}"
                               oncomplete="$('#modalAddress').modal('show');"
                               update=":cmpAddress:frmAddAddress">
                   Adicionar Endereço
                </p:commandLink>
-
             </h:form>
 
             <h:form id="frmCadastro" prependId="false" class="form form-horizontal">
@@ -62,13 +58,6 @@
                   <f:validateLength maximum="240" />
                </h:inputTextarea>
 
-               <h:outputLabel for="dataNascimento">Nascimento</h:outputLabel>
-               <h:inputText id="dataNascimento"
-                            value="#{contactMB.contact.dateBirth}" 
-                            pt:placeholder="Data do Nascimento">
-                  <f:converter converterId="dataConverter"></f:converter>
-               </h:inputText>
-
                <h:panelGrid id="pnlPhones">
                   <h:dataTable id="tblPhones"
                                var="phone" 
@@ -90,12 +79,14 @@
                                        oncomplete="$('#modalPhone').modal('show');"
                                        title="Editar"
                                        immediate="true">
+                           <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                            <f:setPropertyActionListener target="#{contactMB.phone}" value="#{phone}"/>
                         </p:commandLink>
                      </h:column>
                      <h:column>
                         <h:commandLink title="Excluir" 
                                        action="#{contactMB.removePhone}">
+                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                            <f:ajax execute="@this" render=":frmCadastro:pnlPhones"/>
                            <f:setPropertyActionListener target="#{contactMB.phone}" value="#{phone}"/>
                         </h:commandLink>
@@ -120,14 +111,17 @@
                      </h:column>
                      <h:column>
                         <p:commandLink immediate="true"
+                                       title="Editar" 
                                        oncomplete="$('#modalAddress').modal('show');"
                                        update=":cmpAddress:frmAddAddress">
+                           <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                            <f:setPropertyActionListener target="#{contactMB.address}" value="#{address}"/>
                         </p:commandLink>
                      </h:column>
                      <h:column>
                         <h:commandLink title="Excluir" 
                                        action="#{contactMB.removeAddress}">
+                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                            <f:ajax execute="@this" render=":frmCadastro:pnlAddress"/>
                            <f:setPropertyActionListener target="#{contactMB.address}" value="#{address}"/>
                         </h:commandLink>
@@ -155,13 +149,14 @@
                                        oncomplete="$('#modalEmail').modal('show');" 
                                        title="Editar" 
                                        update=":cmpEmail:frmAddEmail">
+                           <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                            <f:setPropertyActionListener target="#{contactMB.email}" value="#{email}" />
                         </p:commandLink>
                      </h:column>
                      <h:column>
                         <h:commandLink title="Excluir" 
                                        action="#{contactMB.removeEmail}">
-                           Remover
+                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                            <f:ajax execute="@this" render=":frmCadastro:pnlEmails"/>
                            <f:setPropertyActionListener target="#{contactMB.email}" value="#{email}"/>
                         </h:commandLink>
@@ -204,9 +199,7 @@
             </composite:email>
 
          </ui:define>
-
       </ui:composition>
-
    </h:body>
 </html>
 
