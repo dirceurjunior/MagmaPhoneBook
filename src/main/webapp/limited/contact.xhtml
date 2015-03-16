@@ -164,6 +164,9 @@
                   </h:dataTable>
                </h:panelGrid>
 
+               <h:commandLink class="btn btn-default" action="#{contactMB.newContact}" immediate="true"><span class="icon-plus"></span> Novo Contato</h:commandLink>
+               <h:commandLink class="btn btn-primary" value="Salvar / Alterar" action="#{contactMB.save}"></h:commandLink>
+
             </h:form>
 
             <composite:phone id="cmpPhone"
