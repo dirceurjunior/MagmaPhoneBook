@@ -251,7 +251,17 @@
          <groupId>org.springframework.security</groupId>  
          <artifactId>facelets-taglib-jsf20-spring-3</artifactId>  
          <version>0.5</version>  
-      </dependency>  
+      </dependency>
+      <dependency>
+         <groupId>org.webjars</groupId>
+         <artifactId>font-awesome</artifactId>
+         <version>4.3.0-1</version>
+      </dependency>
+      <dependency>
+         <groupId>org.webjars</groupId>
+         <artifactId>bootstrap-glyphicons</artifactId>
+         <version>bdd2cbfba0</version>
+      </dependency>
       <dependency>
          <groupId>javax</groupId>
          <artifactId>javaee-web-api</artifactId>

@@ -23,11 +23,11 @@
 }*/
 
 @font-face { font-family: "Ionicons"; 
-             src: url("#{resource['font:ionicons.eot']}");  
-             src: url("#{resource['font:ionicons.eot']}")
-                 format("embedded-opentype"),url("#{resource['font:ionicons.ttf']}") 
-                 format("truetype"), url("#{resource['font:ionicons.woff']}")
-                 format("woff"), url("#{resource['font:ionicons.svg']}")
+             src: url("#{resource['icons:ionicons/font/ionicons.eot']}&v=ionicons");  
+             src: url("#{resource['icons:ionicons/font/ionicons.eot']}&#iefix&v=ionicons")
+                 format("embedded-opentype"),url("#{resource['icons:ionicons/font/ionicons.ttf']}&v=ionicons") 
+                 format("truetype"), url("#{resource['icons:ionicons/font/ionicons.woff']}&v=ionicons")
+                 format("woff"), url("#{resource['icons:ionicons/font/ionicons.svg']}&v=ionicons")
                  format("svg"); 
              font-weight: normal; 
              font-style: normal; }

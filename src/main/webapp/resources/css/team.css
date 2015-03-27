@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20/03/2015, 00:08:12
+    Author     : Dirceu R Junior
+*/
+
+.team01 {
+    background-image: url("#{resource['images:team/1.jpg']}");
+}
+
+.team02 {
+    background-image: url("#{resource['images:team/2.jpg']}");
+}
+
+.team03 {
+    background-image: url("#{resource['images:team/3.jpg']}");
+}
+
+.team04 {
+    background-image: url("#{resource['images:team/4.jpg']}");
+}
