@@ -3,29 +3,95 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        <ui:composition template="/template/layout.xhtml">
-            <ui:define name="content">
-                <h:panelGroup rendered="#{!empty param.login_error}">
-                    <div class="alert alert-danger" role="alert">
-                        #{SPRING_SECURITY_LAST_EXCEPTION.message}
-                    </div>
-                </h:panelGroup>
-                <form id="login" method="post" action="${request.contextPath}/j_spring_security_check">
-                    <input type='text' name='j_username' placeholder="Usuário" />
-                    <input type='password' name='j_password' placeholder="Senha" />
-                    <button type="submit">Acessar</button>
-                    <script>
-                        document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}";
-                    </script>
-                </form>
-                <h:form>
-                    <h:commandLink action="user" value="Cadastre-se"/>
-                </h:form> 
-            </ui:define>
-        </ui:composition>
-    </h:body>
+   <h:head>
+      <title>Facelet Title</title>
+   </h:head>
+
+   <h:body>
+
+      <ui:composition template="/template/layout.xhtml">
+
+         <ui:define name="content">
+
+            <div class="navbar navbar-inverse navbar-fixed-top scroll-me" id="menu-section" >
+               <div class="container">
+                  <div class="navbar-header">
+                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                     </button>
+                     <a class="navbar-brand" href="#">
+                        Magma PhoneBook
+                     </a>
+                  </div>
+                  <!--                  <div class="navbar-collapse collapse">
+                                       <ul class="nav navbar-nav navbar-right">
+                                          <li><a href="#home">INICIO</a></li>
+                                          <li><a href="#services">CADASTRO</a></li>
+                                          <li><a href="#pricing">PESQUISAR</a></li>
+                                          <li><a href="#contact">CONTATO</a></li>
+                                       </ul>
+                                    </div>-->
+               </div>
+            </div>
+            <!--MENU SECTION END-->
+            <div id="home" >
+               <div class="container">
+                  <div class="row">
+                     <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+                        <div id="carousel-slider" data-ride="carousel" class="carousel slide  animate-in" data-anim-type="fade-in-up">
+
+                           <div class="carousel-inner">
+                              <div class="item active">
+
+                                 <h2>
+                                    PhoneBook - Sua agenda telefônica online 
+                                 </h2>
+                                 <p>
+                                    Venha você também desfrutar de todo a praticidade e facilidade
+                                    do PhoneBook
+                                 </p>
+                              </div>
+                              <div class="item">
+                                 <h2>
+                                    Magma Softwares
+                                 </h2>
+                                 <p>
+                                    Soluções para sua empresa
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row animate-in" data-anim-type="fade-in-up">
+                        <h:panelGroup rendered="#{!empty param.login_error}">
+                           <div class="alert alert-danger" role="alert">
+                              #{SPRING_SECURITY_LAST_EXCEPTION.message}
+                           </div>
+                        </h:panelGroup>
+                        <form id="login" method="post" action="${request.contextPath}/j_spring_security_check">
+                           <input type='text' name='j_username' placeholder="Usuário" />
+                           <input type='password' name='j_password' placeholder="Senha" />
+                           <button type="submit">Acessar</button>
+                           <script>
+                              document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}";
+                           </script>
+                        </form>
+                        <h:form>
+                           <h:commandLink action="user" value="Cadastre-se"/>
+                        </h:form>
+                     </div>
+                  </div>
+
+               </div>
+
+            </div>
+
+         </ui:define>
+
+      </ui:composition>
+
+   </h:body>
+
 </html>
