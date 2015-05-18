@@ -3,29 +3,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        
-        <ui:composition template="/template/layout.xhtml">
-            <ui:define name="content">
-                <h:form>
-                    <h:outputText id="loginativo" value="#{request.userPrincipal.name}"/>
+   <h:head>
+      <title>Facelet Title</title>
+   </h:head>
+   <h:body>
 
-                    <h:outputLink onclick="document.location = '#{request.contextPath}/j_spring_security_logout'" title="Sair">
-                        SAIR
-                    </h:outputLink>
-                    <br/>
-                    <h:commandLink class="btn btn-info btn-sm" action="/limited/contact" value="Contatos"/>
+      <ui:composition template="/newTemplate.xhtml">
 
-                    <h:commandLink class="btn btn-info btn-sm" action="/template" value="Template"/>
+         <ui:define name="bottom">
 
+            <h:form>
+               
+               <h:outputText id="loginativo" value="#{request.userPrincipal.name}"/>
 
-                </h:form>
-            </ui:define>
-        </ui:composition>
+               <h:outputLink onclick="document.location = '#{request.contextPath}/j_spring_security_logout'" title="Sair">
+                  SAIR
+               </h:outputLink>
+               <br/>
+               <h:commandLink class="btn btn-info btn-sm" action="/limited/contact" value="Contatos"/>
 
-    </h:body>
+               <h:commandLink class="btn btn-info btn-sm" action="/template" value="Template"/>
+
+            </h:form>
+
+         </ui:define>
+
+      </ui:composition>
+
+   </h:body>
 </html>
 
