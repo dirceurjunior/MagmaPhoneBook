@@ -22,121 +22,119 @@ import org.hibernate.annotations.NaturalId;
 @Entity
 public class Users implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue
-    private Integer id;
+   @Id
+   @GeneratedValue
+   private Integer id;
 
-    private String name;
+   private String name;
 
-    private String cpf;
+   private String cpf;
 
-    @NaturalId
-    private String email;
+   @NaturalId
+   private String email;
 
-    @NaturalId
-    private String login;
+   @NaturalId
+   private String login;
 
-    private String password;
+   private String password;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date dateBirth;
+   @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+   private Date dateBirth;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Date dateRegistration;
+   @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+   private Date dateRegistration;
 
-    private boolean active;
+   private boolean active;
 
-    @ElementCollection(targetClass = String.class)
-    @JoinTable(
-            name = "users_permissions",
-            uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"users", "permissions"})},
-            joinColumns = @JoinColumn(name = "users"))
-    @Column(name = "permissions", length = 50)
-    private Set<String> permissions = new HashSet<>();
+   @ElementCollection(targetClass = String.class)
+   @JoinTable(
+           name = "users_permissions",
+           uniqueConstraints = {
+              @UniqueConstraint(columnNames = {"users", "permissions"})},
+           joinColumns = @JoinColumn(name = "users"))
+   @Column(name = "permissions", length = 50)
+   private Set<String> permissions = new HashSet<>();
 
-    public Integer getId() {
-        return id;
-    }
+   public Integer getId() {
+      return id;
+   }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+   public void setId(Integer id) {
+      this.id = id;
+   }
 
-    public String getName() {
-        return name;
-    }
+   public String getName() {
+      return name;
+   }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+   public void setName(String name) {
+      this.name = name;
+   }
 
-    public String getCpf() {
-        return cpf;
-    }
+   public String getCpf() {
+      return cpf;
+   }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+   public void setCpf(String cpf) {
+      this.cpf = cpf;
+   }
 
-    public String getLogin() {
-        return login;
-    }
+   public String getLogin() {
+      return login;
+   }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
+   public void setLogin(String login) {
+      this.login = login;
+   }
 
-    public String getPassword() {
-        return password;
-    }
+   public String getPassword() {
+      return password;
+   }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+   public void setPassword(String password) {
+      this.password = password;
+   }
 
-    public Date getDateBirth() {
-        return dateBirth;
-    }
+   public Date getDateBirth() {
+      return dateBirth;
+   }
 
-    public void setDateBirth(Date dateBirth) {
-        this.dateBirth = dateBirth;
-    }
+   public void setDateBirth(Date dateBirth) {
+      this.dateBirth = dateBirth;
+   }
 
-    public Date getDateRegistration() {
-        return dateRegistration;
-    }
+   public Date getDateRegistration() {
+      return dateRegistration;
+   }
 
-    public void setDateRegistration(Date dateRegistration) {
-        this.dateRegistration = dateRegistration;
-    }
+   public void setDateRegistration(Date dateRegistration) {
+      this.dateRegistration = dateRegistration;
+   }
 
-    public boolean isActive() {
-        return active;
-    }
+   public boolean isActive() {
+      return active;
+   }
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
+   public void setActive(boolean active) {
+      this.active = active;
+   }
 
-    public Set<String> getPermissions() {
-        return permissions;
-    }
+   public Set<String> getPermissions() {
+      return permissions;
+   }
 
-    public void setPermissions(Set<String> permissions) {
-        this.permissions = permissions;
-    }
+   public void setPermissions(Set<String> permissions) {
+      this.permissions = permissions;
+   }
 
-    public String getEmail() {
-        return email;
-    }
+   public String getEmail() {
+      return email;
+   }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
-    
+   public void setEmail(String email) {
+      this.email = email;
+   }
 
 }

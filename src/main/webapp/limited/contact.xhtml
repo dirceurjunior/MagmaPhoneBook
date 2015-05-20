@@ -10,18 +10,208 @@
    <h:head>
       <title>Facelet Title</title>
    </h:head>
-   <h:body>
-      <ui:composition template="/template/layout.xhtml">
-         <ui:define name="content">
-            Cadastro de Contatos
 
-            <h:form id="frmBtnComposites">
-               <p:commandLink action="#{contactMB.newPhone}"
-                              class="link"
-                              oncomplete="$('#modalPhone').modal('show');"
-                              update=":cmpPhone:frmAddPhone">
-                  Adicionar Telefone
-               </p:commandLink>
+   <h:body>
+
+      <ui:composition template="/template/layout.xhtml">
+
+         <ui:define name="content">
+
+            <div class="navbar navbar-inverse navbar-fixed-top scroll-me" id="menu-section" >
+               <div class="container">
+                  <div class="navbar-header">
+                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                     </button>
+                     <a class="navbar-brand" href="#">
+                        Magma PhoneBook - Contatos
+                     </a>
+                  </div>
+                  <div class="navbar-collapse collapse">
+                     <ul class="nav navbar-nav navbar-right">
+                        <li> 
+                           <h:form>
+                              <h:outputLink class="btn btn-info" 
+                                            onclick="document.location = '#{request.contextPath}/j_spring_security_logout'" 
+                                            title="Sair">
+                                 SAIR
+                              </h:outputLink>
+                           </h:form>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+
+            <div id="home" >
+               <div class="container">
+                  <div class="row">
+                     <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+                        <div id="carousel-slider" data-ride="carousel" class="carousel slide  animate-in" data-anim-type="fade-in-up">
+
+                           <h:form id="frmCadastro" prependId="false" class="form-horizontal">
+
+                              <h:inputHidden value="#{contactMB.contact.id}"/>
+
+                              <div class="form-group">
+                                 <h:outputLabel for="nome" class="col-sm-2 control-label">Nome</h:outputLabel>
+                                 <div class="col-sm-10">
+                                    <h:inputText id="nome" 
+                                                 class="form-control"
+                                                 required="true"
+                                                 requiredMessage="Nome Obrigatório"
+                                                 pt:placeholder="Nome"
+                                                 onkeyup="this.value = this.value.toUpperCase();"
+                                                 value="#{contactMB.contact.name}" >
+                                    </h:inputText>
+                                 </div>
+                              </div>
+
+                              <div class="form-group">
+                                 <h:outputLabel for="nome" class="col-sm-2 control-label">Observações</h:outputLabel>
+                                 <div class="col-sm-10">
+                                    <h:inputTextarea id="observacao" 
+                                                     class="form-control"
+                                                     validatorMessage="Observações -> Limite de 250 Caracteres"
+                                                     rows="2"
+                                                     onkeyup="this.value = this.value.toUpperCase();"
+                                                     pt:placeholder="Observações"
+                                                     value="#{contactMB.contact.note}" >
+                                       <f:validateLength maximum="240" />
+                                    </h:inputTextarea>
+                                 </div>
+                              </div>
+
+                              <h:panelGrid id="pnlPhones">
+                                 <h:dataTable id="tblPhones"
+                                              var="phone" 
+                                              value="#{contactMB.listPhones}"
+                                              rendered="#{!empty contactMB.listPhones}">  
+                                    <h:inputHidden value="#{phone.id}"></h:inputHidden>
+                                    <f:facet name="header">
+                                       Contatos Telefônicos
+                                    </f:facet>
+                                    <h:column>
+                                       <h:outputText value="#{phone.tipo}"></h:outputText>
+                                    </h:column>
+                                    <h:column>
+                                       <h:outputText value="(#{phone.codArea}) #{phone.numero}"></h:outputText>
+                                    </h:column>
+                                    <h:column>
+                                       <p:commandLink id="btnEditPhone" 
+                                                      update=":cmpPhone:frmAddPhone"
+                                                      oncomplete="$('#modalPhone').modal('show');"
+                                                      title="Editar"
+                                                      immediate="true">
+                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                          <f:setPropertyActionListener target="#{contactMB.phone}" value="#{phone}"/>
+                                       </p:commandLink>
+                                    </h:column>
+                                    <h:column>
+                                       <h:commandLink title="Excluir" 
+                                                      action="#{contactMB.removePhone}">
+                                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                          <f:ajax execute="@this" render=":frmCadastro:pnlPhones"/>
+                                          <f:setPropertyActionListener target="#{contactMB.phone}" value="#{phone}"/>
+                                       </h:commandLink>
+                                    </h:column>
+                                 </h:dataTable>
+                              </h:panelGrid>
+
+                              <h:panelGrid id="pnlAddress">
+                                 <h:dataTable id="tblAddress"
+                                              var="address" 
+                                              value="#{contactMB.listAddress}"
+                                              rendered="#{!empty contactMB.listAddress}"> 
+                                    <h:inputHidden value="#{address.id}"/>
+                                    <f:facet name="header">
+                                       Endereço
+                                    </f:facet>
+                                    <h:column>
+                                       <h:outputText value="#{address.typeAddress}"/>
+                                    </h:column>
+                                    <h:column>
+                                       <h:outputText value="#{address.street}, Nº #{address.number} "/>
+                                    </h:column>
+                                    <h:column>
+                                       <p:commandLink immediate="true"
+                                                      title="Editar" 
+                                                      oncomplete="$('#modalAddress').modal('show');"
+                                                      update=":cmpAddress:frmAddAddress">
+                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                          <f:setPropertyActionListener target="#{contactMB.address}" value="#{address}"/>
+                                       </p:commandLink>
+                                    </h:column>
+                                    <h:column>
+                                       <h:commandLink title="Excluir" 
+                                                      action="#{contactMB.removeAddress}">
+                                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                          <f:ajax execute="@this" render=":frmCadastro:pnlAddress"/>
+                                          <f:setPropertyActionListener target="#{contactMB.address}" value="#{address}"/>
+                                       </h:commandLink>
+                                    </h:column>
+                                 </h:dataTable>
+                              </h:panelGrid>
+
+                              <h:panelGrid id="pnlEmails">
+                                 <h:dataTable id="tblEmails"
+                                              var="email" 
+                                              value="#{contactMB.listEmails}"
+                                              rendered="#{!empty contactMB.listEmails}">  
+                                    <h:inputHidden value="#{email.id}"/>
+                                    <f:facet name="header">
+                                       E-mail
+                                    </f:facet>
+                                    <h:column>
+                                       <h:outputText value="#{email.type}"/>
+                                    </h:column>
+                                    <h:column>
+                                       <h:outputText value="#{email.email}"/>
+                                    </h:column>
+                                    <h:column>
+                                       <p:commandLink immediate="true"
+                                                      oncomplete="$('#modalEmail').modal('show');" 
+                                                      title="Editar" 
+                                                      update=":cmpEmail:frmAddEmail">
+                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                          <f:setPropertyActionListener target="#{contactMB.email}" value="#{email}" />
+                                       </p:commandLink>
+                                    </h:column>
+                                    <h:column>
+                                       <h:commandLink title="Excluir" 
+                                                      action="#{contactMB.removeEmail}">
+                                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                          <f:ajax execute="@this" render=":frmCadastro:pnlEmails"/>
+                                          <f:setPropertyActionListener target="#{contactMB.email}" value="#{email}"/>
+                                       </h:commandLink>
+                                    </h:column>
+                                 </h:dataTable>
+                              </h:panelGrid>
+
+                              <h:commandLink class="btn btn-default" action="#{contactMB.newContact}" immediate="true"><span class="icon-plus"></span> Novo Contato</h:commandLink>
+                              <h:commandLink class="btn btn-primary" value="Salvar / Alterar" action="#{contactMB.save}"></h:commandLink>
+
+                           </h:form>
+
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+
+            <h:form id="frmBtnComposites" class="form-horizontal">
+               <div class="form-group">
+                  <span class="ion-calendar"></span>
+                  <p:commandLink action="#{contactMB.newPhone}"
+                                 class="link"
+                                 oncomplete="$('#modalPhone').modal('show');"
+                                 update=":cmpPhone:frmAddPhone">
+                     Adicionar Telefone
+                  </p:commandLink>
+               </div>
                <p:commandLink action="#{contactMB.newEmail}"
                               class="link"
                               oncomplete="$('#modalEmail').modal('show');"
@@ -35,139 +225,7 @@
                </p:commandLink>
             </h:form>
 
-            <h:form id="frmCadastro" prependId="false" class="form form-horizontal">
 
-               <h:inputHidden value="#{contactMB.contact.id}"/>
-
-               <h:outputLabel for="nome">Nome</h:outputLabel>
-               <h:inputText id="nome" 
-                            required="true"
-                            requiredMessage="Nome Obrigatório"
-                            pt:placeholder="Nome"
-                            onkeyup="this.value = this.value.toUpperCase();"
-                            value="#{contactMB.contact.name}" >
-               </h:inputText>
-
-               <h:outputLabel for="observacao">Observações</h:outputLabel>
-               <h:inputTextarea id="observacao" 
-                                validatorMessage="Observações -> Limite de 250 Caracteres"
-                                rows="2"
-                                onkeyup="this.value = this.value.toUpperCase();"
-                                pt:placeholder="Observações"
-                                value="#{contactMB.contact.note}" >
-                  <f:validateLength maximum="240" />
-               </h:inputTextarea>
-
-               <h:panelGrid id="pnlPhones">
-                  <h:dataTable id="tblPhones"
-                               var="phone" 
-                               value="#{contactMB.listPhones}"
-                               rendered="#{!empty contactMB.listPhones}">  
-                     <h:inputHidden value="#{phone.id}"></h:inputHidden>
-                     <f:facet name="header">
-                        Contatos Telefônicos
-                     </f:facet>
-                     <h:column>
-                        <h:outputText value="#{phone.tipo}"></h:outputText>
-                     </h:column>
-                     <h:column>
-                        <h:outputText value="(#{phone.codArea}) #{phone.numero}"></h:outputText>
-                     </h:column>
-                     <h:column>
-                        <p:commandLink id="btnEditPhone" 
-                                       update=":cmpPhone:frmAddPhone"
-                                       oncomplete="$('#modalPhone').modal('show');"
-                                       title="Editar"
-                                       immediate="true">
-                           <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                           <f:setPropertyActionListener target="#{contactMB.phone}" value="#{phone}"/>
-                        </p:commandLink>
-                     </h:column>
-                     <h:column>
-                        <h:commandLink title="Excluir" 
-                                       action="#{contactMB.removePhone}">
-                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                           <f:ajax execute="@this" render=":frmCadastro:pnlPhones"/>
-                           <f:setPropertyActionListener target="#{contactMB.phone}" value="#{phone}"/>
-                        </h:commandLink>
-                     </h:column>
-                  </h:dataTable>
-               </h:panelGrid>
-
-               <h:panelGrid id="pnlAddress">
-                  <h:dataTable id="tblAddress"
-                               var="address" 
-                               value="#{contactMB.listAddress}"
-                               rendered="#{!empty contactMB.listAddress}"> 
-                     <h:inputHidden value="#{address.id}"/>
-                     <f:facet name="header">
-                        Endereço
-                     </f:facet>
-                     <h:column>
-                        <h:outputText value="#{address.typeAddress}"/>
-                     </h:column>
-                     <h:column>
-                        <h:outputText value="#{address.street}, Nº #{address.number} "/>
-                     </h:column>
-                     <h:column>
-                        <p:commandLink immediate="true"
-                                       title="Editar" 
-                                       oncomplete="$('#modalAddress').modal('show');"
-                                       update=":cmpAddress:frmAddAddress">
-                           <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                           <f:setPropertyActionListener target="#{contactMB.address}" value="#{address}"/>
-                        </p:commandLink>
-                     </h:column>
-                     <h:column>
-                        <h:commandLink title="Excluir" 
-                                       action="#{contactMB.removeAddress}">
-                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                           <f:ajax execute="@this" render=":frmCadastro:pnlAddress"/>
-                           <f:setPropertyActionListener target="#{contactMB.address}" value="#{address}"/>
-                        </h:commandLink>
-                     </h:column>
-                  </h:dataTable>
-               </h:panelGrid>
-
-               <h:panelGrid id="pnlEmails">
-                  <h:dataTable id="tblEmails"
-                               var="email" 
-                               value="#{contactMB.listEmails}"
-                               rendered="#{!empty contactMB.listEmails}">  
-                     <h:inputHidden value="#{email.id}"/>
-                     <f:facet name="header">
-                        E-mail
-                     </f:facet>
-                     <h:column>
-                        <h:outputText value="#{email.type}"/>
-                     </h:column>
-                     <h:column>
-                        <h:outputText value="#{email.email}"/>
-                     </h:column>
-                     <h:column>
-                        <p:commandLink immediate="true"
-                                       oncomplete="$('#modalEmail').modal('show');" 
-                                       title="Editar" 
-                                       update=":cmpEmail:frmAddEmail">
-                           <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                           <f:setPropertyActionListener target="#{contactMB.email}" value="#{email}" />
-                        </p:commandLink>
-                     </h:column>
-                     <h:column>
-                        <h:commandLink title="Excluir" 
-                                       action="#{contactMB.removeEmail}">
-                           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                           <f:ajax execute="@this" render=":frmCadastro:pnlEmails"/>
-                           <f:setPropertyActionListener target="#{contactMB.email}" value="#{email}"/>
-                        </h:commandLink>
-                     </h:column>
-                  </h:dataTable>
-               </h:panelGrid>
-
-               <h:commandLink class="btn btn-default" action="#{contactMB.newContact}" immediate="true"><span class="icon-plus"></span> Novo Contato</h:commandLink>
-               <h:commandLink class="btn btn-primary" value="Salvar / Alterar" action="#{contactMB.save}"></h:commandLink>
-
-            </h:form>
 
             <composite:phone id="cmpPhone"
                              code="#{contactMB.phone.id}"
