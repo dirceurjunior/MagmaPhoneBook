@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"   
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
+   <h:head>
 
-        <title>Facelet Title</title>
+      <title>Facelet Title</title>
 
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
 
-        <h:outputStylesheet library="bootstrap" name="css/bootstrap.css" /> 
+      <h:outputStylesheet library="bootstrap" name="css/bootstrap.css" /> 
 
-        <h:outputStylesheet library="webjars" name="/font-awesome/4.3.0/css/font-awesome-jsf.css"/>
+      <h:outputStylesheet library="webjars" name="/font-awesome/4.3.0/css/font-awesome-jsf.css"/>
 
-        <h:outputStylesheet library="icons" name="ionicons/css/ionicons.css" />
+      <h:outputStylesheet library="icons" name="ionicons/css/ionicons.css" />
 
-        <h:outputStylesheet library="icons" name="glyphicons/css/glyphicons.css" /> 
+      <h:outputStylesheet library="icons" name="glyphicons/css/glyphicons.css" /> 
 
-        <h:outputStylesheet library="fancybox" name="css/jquery.fancybox.css" /> 
+      <h:outputStylesheet library="fancybox" name="css/jquery.fancybox.css" /> 
 
-        <h:outputStylesheet library="css" name="animations.min.css" /> 
+      <h:outputStylesheet library="css" name="animations.min.css" /> 
 
-        <h:outputStylesheet library="css" name="style-red.css" /> 
+      <h:outputStylesheet library="css" name="style-red.css" /> 
 
-        <h:outputStylesheet library="vegas" name="vegas.min.css" /> 
+      <h:outputStylesheet library="vegas" name="vegas.min.css" /> 
 
-        <h:outputStylesheet library="css" name="team.css" /> 
+      <h:outputStylesheet library="css" name="team.css" /> 
 
-        <h:outputScript library="js" name="jquery.min.js"/>
+      <h:outputScript library="js" name="jquery.min.js"/>
 
-        <h:outputScript library="vegas" name="vegas.min.js" />
+      <h:outputScript library="vegas" name="vegas.min.js" />
 
-        <h:outputScript library="bootstrap" name="js/bootstrap.js" />
+      <h:outputScript library="bootstrap" name="js/bootstrap.js" />
 
-        <h:outputScript library="js" name="jquery.easing.min.js" />
+      <h:outputScript library="js" name="jquery.easing.min.js" />
 
-        <h:outputScript library="fancybox" name="js/jquery.fancybox.js" />
+      <h:outputScript library="fancybox" name="js/jquery.fancybox.js" />
 
-        <h:outputScript library="js" name="jquery.isotope.js" />
+      <h:outputScript library="js" name="jquery.isotope.js" />
 
-        <h:outputScript library="js" name="appear.min.js" />
+      <h:outputScript library="js" name="appear.min.js" />
 
-        <h:outputScript library="js" name="animations.min.js" />
+      <h:outputScript library="js" name="animations.min.js" />
 
-        <h:outputScript library="js" name="custom.js" />
+      <h:outputScript library="js" name="custom.js" />
 
-    </h:head>
+   </h:head>
 
-    <h:body>
-        <div id="page">
-            <p:messages/>
-            <div id="header">
-                <ui:insert name="header" >
-                    <ui:include src="/template/header.xhtml"/>
-                </ui:insert>
-            </div>
-            <div id="content">
-                <ui:insert name="content" >
-                    <ui:include src="/template/content.xhtml"/>
-                </ui:insert>
-            </div>
-            <div id="footer">
-                <ui:insert name="footer" >
-                    <ui:include src="/template/footer.xhtml"/>
-                </ui:insert>
-            </div>
-        </div>
-        <h:outputScript library="vegas" name="configVegas.js"/>
-    </h:body>
+   <h:body>
+      <div id="page">
+         <p:growl id="msgs" autoUpdate="true" life="4000"></p:growl>
+         <div id="header">
+            <ui:insert name="header" >
+               <ui:include src="/template/header.xhtml"/>
+            </ui:insert>
+         </div>
+         <div id="content">
+            <ui:insert name="content" >
+               <ui:include src="/template/content.xhtml"/>
+            </ui:insert>
+         </div>
+         <div id="footer">
+            <ui:insert name="footer" >
+               <ui:include src="/template/footer.xhtml"/>
+            </ui:insert>
+         </div>
+      </div>
+      <h:outputScript library="vegas" name="configVegas.js"/>
+   </h:body>
 </html>

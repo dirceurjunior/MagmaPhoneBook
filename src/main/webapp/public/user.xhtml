@@ -4,75 +4,106 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+   <h:head>
+      <title>Facelet Title</title>
+   </h:head>
 
-        <ui:composition template="/template/layout.xhtml">
-            <ui:define name="content">
-                Cadastrar Usuário
-                <h:form>
-                    <h:messages/>
-                    <h:inputText id="name" 
-                                 class="field-control"
-                                 required="true"
-                                 requiredMessage="Nome Obrigatório"
-                                 pt:placeholder="Nome"
-                                 onkeyup="this.value = this.value.toUpperCase();"
-                                 value="#{usersMB.users.name}" >
-                    </h:inputText> 
-                    <h:inputText id="email" 
-                                 class="field-control"
-                                 required="true"
-                                 requiredMessage="Email Obrigatório"
-                                 pt:placeholder="E-mail"
-                                 onkeyup="this.value = this.value.toLowerCase();"
-                                 value="#{usersMB.users.email}">
-                        <f:validator validatorId="emailValidator"></f:validator>
-                    </h:inputText>
-                    <h:inputSecret id="password" 
-                                   class="field-control"
-                                   required="true"
-                                   requiredMessage="Senha Obrigatório"
-                                   pt:placeholder="Digite sua Senha"
-                                   value="#{usersMB.users.password}" >
-                    </h:inputSecret>
-                    <h:inputSecret id="passwordConfirm" 
-                                   class="field-control"
-                                   required="true"
-                                   requiredMessage="Senha Obrigatório"
-                                   pt:placeholder="Confirme sua Senha"
-                                   value="#{usersMB.passwordConfirm}">
-                    </h:inputSecret>
-                    <h:inputText id="login" 
-                                 class="field-control"
-                                 required="true"
-                                 requiredMessage="Login Obrigatório"
-                                 pt:placeholder="Login"
-                                 value="#{usersMB.users.login}" >
-                    </h:inputText>
-                    <h:inputText id="cpf" 
-                                 class="field-control"
-                                 pt:placeholder="CPF"
-                                 value="#{usersMB.users.cpf}">
-                        <f:converter converterId="cpfConverter"/>
-                        <f:validator validatorId="cpfValidator"/>
-                    </h:inputText>
-                    <h:inputText id="dataNascimento"
-                                 class="field-control"
-                                 value="#{usersMB.users.dateBirth}" 
-                                 pt:placeholder="Data do Nascimento">
-                        <f:converter converterId="dataConverter"></f:converter>
-                    </h:inputText>
-                    <h:commandLink value="Salvar / Alterar" 
-                                   class="btn btn-default"
-                                   action="#{usersMB.save}">
-                    </h:commandLink>
-                </h:form>
-            </ui:define>
-        </ui:composition>
-    </h:body>
+   <h:body>
+
+      <ui:composition template="/template/layout.xhtml">
+
+         <ui:define name="content">
+
+            <div class="navbar navbar-inverse navbar-fixed-top scroll-me" id="menu-section" >
+               <div class="container">
+                  <div class="navbar-header">
+                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                     </button>
+                     <a class="navbar-brand" href="#">
+                        Magma PhoneBook
+                     </a>
+                  </div>
+                  <div class="navbar-collapse collapse">
+                     <ul class="nav navbar-nav navbar-right">
+                        <li> <h:form>
+                              <h:commandLink class="btn btn-info" action="login" value="Entrar"/>
+                           </h:form>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+
+            <div id="home" >
+               <div class="container">
+                  <div class="row">
+                     <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
+                        <div id="carousel-slider" data-ride="carousel" class="carousel slide  animate-in" data-anim-type="fade-in-up">
+                           <h:form class="form-horizontal col-md-8 col-md-offset-2">
+                              <div class="form-group">
+                                 <h:inputText id="name" 
+                                              class="form-control"
+                                              required="true"
+                                              requiredMessage="Nome Obrigatório"
+                                              pt:placeholder="Nome"
+                                              onkeyup="this.value = this.value.toUpperCase();"
+                                              value="#{usersMB.users.name}" >
+                                 </h:inputText> 
+                              </div>
+                              <div class="form-group">
+                                 <h:inputText id="email" 
+                                              class="form-control"
+                                              required="true"
+                                              requiredMessage="Email Obrigatório"
+                                              pt:placeholder="E-mail"
+                                              onkeyup="this.value = this.value.toLowerCase();"
+                                              value="#{usersMB.users.email}">
+                                    <f:validator validatorId="emailValidator"></f:validator>
+                                 </h:inputText>
+                              </div>
+                              <div class="form-group">
+                                 <h:inputSecret id="password" 
+                                                class="form-control"
+                                                required="true"
+                                                requiredMessage="Sua Senha Obrigatório"
+                                                pt:placeholder="Digite sua Senha"
+                                                value="#{usersMB.users.password}" >
+                                 </h:inputSecret>
+                              </div>
+                              <div class="form-group">
+                                 <h:inputSecret id="passwordConfirm" 
+                                                class="form-control"
+                                                required="true"
+                                                requiredMessage="Confirme Senha Obrigatório"
+                                                pt:placeholder="Confirme sua Senha"
+                                                value="#{usersMB.passwordConfirm}">
+                                 </h:inputSecret>
+                              </div>
+                              <div class="form-group">
+                                 <div>
+                                    <h:commandLink value="Cadastrar" 
+                                                   class="btn btn-default"
+                                                   action="#{usersMB.save}">
+                                    </h:commandLink>
+                                 </div>
+                              </div>
+                           </h:form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </ui:define>
+
+      </ui:composition>
+
+   </h:body>
+
 </html>
 

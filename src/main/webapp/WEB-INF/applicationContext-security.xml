@@ -6,28 +6,28 @@
                         http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
                         http://www.springframework.org/schema/security 
                         http://www.springframework.org/schema/security/spring-security-3.2.xsd">
-    <http>
-        <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
-        <intercept-url pattern="/limited/**" access="ROLE_USER"/>
-        <form-login login-page="/public/login.jsf"
+   <http>
+      <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
+      <intercept-url pattern="/limited/**" access="ROLE_USER"/>
+      <form-login login-page="/public/login.jsf"
                   always-use-default-target="true" 
                   default-target-url="/limited/main.jsf"
                   authentication-failure-url="/public/login.jsf?login_error=1"/>
-        <logout logout-success-url="http://www.google.com.br"/>
-        <remember-me token-validity-seconds="120"/>
-    </http>
+      <logout logout-success-url="http://www.google.com.br"/>
+      <remember-me token-validity-seconds="120"/>
+   </http>
 
-    <authentication-manager>
-        <authentication-provider>
-            <jdbc-user-service 
-                data-source-ref="MagmaPhoneBookDataSource" 
-                authorities-by-username-query="SELECT u.login, p.permissions
+   <authentication-manager>
+      <authentication-provider>
+         <jdbc-user-service 
+            data-source-ref="MagmaPhoneBookDataSource" 
+            authorities-by-username-query="SELECT u.email, p.permissions
                                                 FROM users u, users_permissions p 
                                                 WHERE u.id = p.users 
-                                                AND u.login = ?"
-                users-by-username-query="SELECT login, password, active
+                                                AND u.email = ?"
+            users-by-username-query="SELECT email, password, active
                                             FROM users 
-                                            WHERE login = ?"/> 
-        </authentication-provider>
-    </authentication-manager>
+                                            WHERE email = ?"/> 
+      </authentication-provider>
+   </authentication-manager>
 </b:beans>
