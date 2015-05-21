@@ -21,9 +21,9 @@
                <div class="container">
                   <div class="navbar-header">
                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <span class="icon-bar">A</span>
+                        <span class="icon-bar">A</span>
+                        <span class="icon-bar">A</span>
                      </button>
                      <a class="navbar-brand" href="#">
                         Magma PhoneBook - Contatos
@@ -45,11 +45,21 @@
                </div>
             </div>
 
-            <div id="home" >
+            <div id="home">
                <div class="container">
                   <div class="row">
                      <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
                         <div id="carousel-slider" data-ride="carousel" class="carousel slide  animate-in" data-anim-type="fade-in-up">
+
+                           <h:form id="frmBtnComposites" class="form-inline">
+                              <div class="form-group">
+                                 <p:commandLink action="#{contactMB.newPhone}"
+                                                class="link"
+                                                oncomplete="$('#modalPhone').modal('show');">
+                                    Adicionar Telefone
+                                 </p:commandLink>
+                              </div>
+                           </h:form>
 
                            <h:form id="frmCadastro" prependId="false" class="form-horizontal">
 
@@ -101,97 +111,31 @@
                                     </h:column>
                                     <h:column>
                                        <p:commandLink id="btnEditPhone" 
-                                                      update=":cmpPhone:frmAddPhone"
-                                                      oncomplete="$('#modalPhone').modal('show');"
+                                                      oncomplete="$('#modalPhones').modal('show');"
                                                       title="Editar"
                                                       immediate="true">
-                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                                           <f:setPropertyActionListener target="#{contactMB.phone}" value="#{phone}"/>
                                        </p:commandLink>
                                     </h:column>
                                     <h:column>
                                        <h:commandLink title="Excluir" 
                                                       action="#{contactMB.removePhone}">
-                                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                          <f:ajax execute="@this" render=":frmCadastro:pnlPhones"/>
+                                          <f:ajax execute="@this" render=":frmCadastro"/>
                                           <f:setPropertyActionListener target="#{contactMB.phone}" value="#{phone}"/>
                                        </h:commandLink>
                                     </h:column>
                                  </h:dataTable>
                               </h:panelGrid>
 
-                              <h:panelGrid id="pnlAddress">
-                                 <h:dataTable id="tblAddress"
-                                              var="address" 
-                                              value="#{contactMB.listAddress}"
-                                              rendered="#{!empty contactMB.listAddress}"> 
-                                    <h:inputHidden value="#{address.id}"/>
-                                    <f:facet name="header">
-                                       Endereço
-                                    </f:facet>
-                                    <h:column>
-                                       <h:outputText value="#{address.typeAddress}"/>
-                                    </h:column>
-                                    <h:column>
-                                       <h:outputText value="#{address.street}, Nº #{address.number} "/>
-                                    </h:column>
-                                    <h:column>
-                                       <p:commandLink immediate="true"
-                                                      title="Editar" 
-                                                      oncomplete="$('#modalAddress').modal('show');"
-                                                      update=":cmpAddress:frmAddAddress">
-                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                          <f:setPropertyActionListener target="#{contactMB.address}" value="#{address}"/>
-                                       </p:commandLink>
-                                    </h:column>
-                                    <h:column>
-                                       <h:commandLink title="Excluir" 
-                                                      action="#{contactMB.removeAddress}">
-                                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                          <f:ajax execute="@this" render=":frmCadastro:pnlAddress"/>
-                                          <f:setPropertyActionListener target="#{contactMB.address}" value="#{address}"/>
-                                       </h:commandLink>
-                                    </h:column>
-                                 </h:dataTable>
-                              </h:panelGrid>
-
-                              <h:panelGrid id="pnlEmails">
-                                 <h:dataTable id="tblEmails"
-                                              var="email" 
-                                              value="#{contactMB.listEmails}"
-                                              rendered="#{!empty contactMB.listEmails}">  
-                                    <h:inputHidden value="#{email.id}"/>
-                                    <f:facet name="header">
-                                       E-mail
-                                    </f:facet>
-                                    <h:column>
-                                       <h:outputText value="#{email.type}"/>
-                                    </h:column>
-                                    <h:column>
-                                       <h:outputText value="#{email.email}"/>
-                                    </h:column>
-                                    <h:column>
-                                       <p:commandLink immediate="true"
-                                                      oncomplete="$('#modalEmail').modal('show');" 
-                                                      title="Editar" 
-                                                      update=":cmpEmail:frmAddEmail">
-                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                          <f:setPropertyActionListener target="#{contactMB.email}" value="#{email}" />
-                                       </p:commandLink>
-                                    </h:column>
-                                    <h:column>
-                                       <h:commandLink title="Excluir" 
-                                                      action="#{contactMB.removeEmail}">
-                                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                          <f:ajax execute="@this" render=":frmCadastro:pnlEmails"/>
-                                          <f:setPropertyActionListener target="#{contactMB.email}" value="#{email}"/>
-                                       </h:commandLink>
-                                    </h:column>
-                                 </h:dataTable>
-                              </h:panelGrid>
-
-                              <h:commandLink class="btn btn-default" action="#{contactMB.newContact}" immediate="true"><span class="icon-plus"></span> Novo Contato</h:commandLink>
-                              <h:commandLink class="btn btn-primary" value="Salvar / Alterar" action="#{contactMB.save}"></h:commandLink>
+                              <h:commandLink class="btn btn-default" 
+                                             action="#{contactMB.newContact}" 
+                                             immediate="true">
+                                 <span class="icon-plus"></span> Novo Contato
+                              </h:commandLink>
+                              <h:commandLink class="btn btn-primary" 
+                                             value="Salvar / Alterar" 
+                                             action="#{contactMB.save}">
+                              </h:commandLink>
 
                            </h:form>
 
@@ -200,32 +144,6 @@
                   </div>
                </div>
             </div>
-
-
-            <h:form id="frmBtnComposites" class="form-horizontal">
-               <div class="form-group">
-                  <span class="ion-calendar"></span>
-                  <p:commandLink action="#{contactMB.newPhone}"
-                                 class="link"
-                                 oncomplete="$('#modalPhone').modal('show');"
-                                 update=":cmpPhone:frmAddPhone">
-                     Adicionar Telefone
-                  </p:commandLink>
-               </div>
-               <p:commandLink action="#{contactMB.newEmail}"
-                              class="link"
-                              oncomplete="$('#modalEmail').modal('show');"
-                              update=":cmpEmail:frmAddEmail">
-                  Adicionar E-mail
-               </p:commandLink>
-               <p:commandLink action="#{contactMB.newAddress}"
-                              oncomplete="$('#modalAddress').modal('show');"
-                              update=":cmpAddress:frmAddAddress">
-                  Adicionar Endereço
-               </p:commandLink>
-            </h:form>
-
-
 
             <composite:phone id="cmpPhone"
                              code="#{contactMB.phone.id}"
@@ -236,28 +154,6 @@
                              btnAddText="Adicionar"
                              btnAddAction="#{contactMB.addPhone}">
             </composite:phone>
-
-            <composite:address id="cmpAddress"
-                               code="#{contactMB.address.id}"
-                               typeAddress="#{contactMB.address.typeAddress}" 
-                               typeStreet="#{contactMB.address.typeStreet}"
-                               street="#{contactMB.address.street}"
-                               number="#{contactMB.address.number}" 
-                               neighbourhood="#{contactMB.address.neighbourhood}"
-                               zipCode="#{contactMB.address.zipCode}"
-                               state="#{contactMB.address.state}"
-                               city="#{contactMB.address.city}"
-                               btnAddText="Adicionar"
-                               btnAddAction="#{contactMB.addAddress}">
-            </composite:address> 
-
-            <composite:email id="cmpEmail"
-                             code="#{contactMB.email.id}"
-                             type="#{contactMB.email.type}"
-                             email="#{contactMB.email.email}"
-                             btnAddText="Adicionar"
-                             btnAddAction="#{contactMB.addEmail}">
-            </composite:email>
 
          </ui:define>
       </ui:composition>
