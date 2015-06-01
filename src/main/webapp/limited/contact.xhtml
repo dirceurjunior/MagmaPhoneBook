@@ -58,6 +58,17 @@
                                                 oncomplete="$('#modalPhone').modal('show');">
                                     Adicionar Telefone
                                  </p:commandLink>
+                                 <p:commandLink action="# {contactMB.newEmail}"
+                                                class="link"
+                                                oncomplete="$('#modalEmail').modal('show');"
+                                                update=":cmpEmail:frmAddEmail">
+                                    Adicionar E-mail
+                                 </p:commandLink>
+                                 <p:commandLink action="# {contactMB.newAddress}"
+                                                oncomplete="$('#modalAddress').modal('show');"
+                                                update=":cmpAddress:frmAddAddress">
+                                    Adicionar Endereço
+                                 </p:commandLink>
                               </div>
                            </h:form>
 
@@ -66,7 +77,6 @@
                               <h:inputHidden value="#{contactMB.contact.id}"/>
 
                               <div class="form-group">
-                                 <h:outputLabel for="nome" class="col-sm-2 control-label">Nome</h:outputLabel>
                                  <div class="col-sm-10">
                                     <h:inputText id="nome" 
                                                  class="form-control"
@@ -80,7 +90,6 @@
                               </div>
 
                               <div class="form-group">
-                                 <h:outputLabel for="nome" class="col-sm-2 control-label">Observações</h:outputLabel>
                                  <div class="col-sm-10">
                                     <h:inputTextarea id="observacao" 
                                                      class="form-control"
@@ -120,8 +129,78 @@
                                     <h:column>
                                        <h:commandLink title="Excluir" 
                                                       action="#{contactMB.removePhone}">
-                                          <f:ajax execute="@this" render=":frmCadastro"/>
+                                          <f:ajax execute="@this" render=":frmCadastro:pnlPhones"/>
                                           <f:setPropertyActionListener target="#{contactMB.phone}" value="#{phone}"/>
+                                       </h:commandLink>
+                                    </h:column>
+                                 </h:dataTable>
+                              </h:panelGrid>
+
+                              <h:panelGrid id="pnlEmails">
+                                 <h:dataTable id="tblEmails"
+                                              var="email" 
+                                              value="#{contactMB.listEmails}"
+                                              rendered="#{!empty contactMB.listEmails}">  
+                                    <h:inputHidden value="#{email.id}"/>
+                                    <f:facet name="header">
+                                       E-mail
+                                    </f:facet>
+                                    <h:column>
+                                       <h:outputText value="# {email.type}"/>
+                                    </h:column>
+                                    <h:column>
+                                       <h:outputText value="# {email.email}"/>
+                                    </h:column>
+                                    <h:column>
+                                       <p:commandLink immediate="true"
+                                                      oncomplete="$('#modalEmail').modal('show');" 
+                                                      title="Editar" 
+                                                      update=":cmpEmail:frmAddEmail">
+                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                          <f:setPropertyActionListener target="#{contactMB.email}" value="#{email}" />
+                                       </p:commandLink>
+                                    </h:column>
+                                    <h:column>
+                                       <h:commandLink title="Excluir" 
+                                                      action="# {contactMB.removeEmail}">
+                                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                          <f:ajax execute="@this" render=":frmCadastro:pnlEmails"/>
+                                          <f:setPropertyActionListener target="#{contactMB.email}" value="#{email}"/>
+                                       </h:commandLink>
+                                    </h:column>
+                                 </h:dataTable>
+                              </h:panelGrid>
+
+                              <h:panelGrid id="pnlAddress">
+                                 <h:dataTable id="tblAddress"
+                                              var="address" 
+                                              value="#{contactMB.listAddress}"
+                                              rendered="#{!empty contactMB.listAddress}"> 
+                                    <h:inputHidden value="#{address.id}"/>
+                                    <f:facet name="header">
+                                       Endereço
+                                    </f:facet>
+                                    <h:column>
+                                       <h:outputText value="#{address.typeAddress}"/>
+                                    </h:column>
+                                    <h:column>
+                                       <h:outputText value="#{address.street}, Nº #{address.number} "/>
+                                    </h:column>
+                                    <h:column>
+                                       <p:commandLink immediate="true"
+                                                      title="Editar" 
+                                                      oncomplete="$('#modalAddress').modal('show');"
+                                                      update=":cmpAddress:frmAddAddress">
+                                          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                          <f:setPropertyActionListener target="#{contactMB.address}" value="#{address}"/>
+                                       </p:commandLink>
+                                    </h:column>
+                                    <h:column>
+                                       <h:commandLink title="Excluir" 
+                                                      action="#{contactMB.removeAddress}">
+                                          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                          <f:ajax execute="@this" render=":frmCadastro:pnlAddress"/>
+                                          <f:setPropertyActionListener target="#{contactMB.address}" value="#{address}"/>
                                        </h:commandLink>
                                     </h:column>
                                  </h:dataTable>
@@ -154,6 +233,28 @@
                              btnAddText="Adicionar"
                              btnAddAction="#{contactMB.addPhone}">
             </composite:phone>
+
+            <composite:email id="cmpEmail"
+                             code="#{contactMB.email.id}"
+                             type="#{contactMB.email.type}"
+                             email="#{contactMB.email.email}"
+                             btnAddText="Adicionar"
+                             btnAddAction="#{contactMB.addEmail}">
+            </composite:email>
+
+            <composite:address id="cmpAddress"
+                               code="#{contactMB.address.id}"
+                               typeAddress="#{contactMB.address.typeAddress}" 
+                               typeStreet="#{contactMB.address.typeStreet}"
+                               street="#{contactMB.address.street}"
+                               number="#{contactMB.address.number}" 
+                               neighbourhood="#{contactMB.address.neighbourhood}"
+                               zipCode="#{contactMB.address.zipCode}"
+                               state="#{contactMB.address.state}"
+                               city="#{contactMB.address.city}"
+                               btnAddText="Adicionar"
+                               btnAddAction="#{contactMB.addAddress}">
+            </composite:address> 
 
          </ui:define>
       </ui:composition>

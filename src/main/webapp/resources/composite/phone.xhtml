@@ -37,7 +37,7 @@
                         <span aria-hidden="true">&times;</span>
                         <span class="sr-only">Fechar</span>
                      </button>
-                     <h4 class="modal-title" id="modalPhoneLabel">Adicionar Contato</h4>
+                     <h4 class="modal-title" id="modalPhoneLabel">Adicionar Telefone</h4>
                   </div><!-- /.modal-header -->
 
                   <div class="modal-body">
@@ -60,7 +60,7 @@
                         </h:selectOneMenu>
                      </div>
 
-                   <div class="form-group">
+                     <div class="form-group">
                         <h:selectOneMenu id="codArea" 
                                          class="form-control"
                                          required="true" 
@@ -76,18 +76,17 @@
                         </h:selectOneMenu>
                      </div>
 
-                    <div class="form-group">
-                        <p:inputMask id="number"
-                                     mask="99-9999-9999"
+                     <div class="form-group">
+                        <h:inputText id="number"
                                      class="form-control"
                                      pt:placeholder="Número"
                                      required="true"
                                      requiredMessage="Número do Contato Obrigatório"
                                      value="#{cc.attrs.number}">
-                        </p:inputMask>
+                        </h:inputText>
                      </div>
 
-                    <div class="form-group">
+                     <div class="form-group">
                         <h:inputText id="observation" 
                                      class="form-control"
                                      pt:placeholder="Tem alguma observação?"
